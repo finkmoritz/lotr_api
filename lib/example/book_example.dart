@@ -1,5 +1,4 @@
-import '../src/model/book.dart';
-import '../src/the_one_api.dart';
+import 'package:the_one_api/the_one_api.dart';
 
 void main() async {
   var theOneApi = TheOneApi();
