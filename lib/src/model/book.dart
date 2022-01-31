@@ -13,4 +13,12 @@ class Book {
       name: json['name'],
     );
   }
+
+  @override
+  String toString() {
+    return '''Book(
+    id: $id,
+    name: $name,
+)''';
+  }
 }
