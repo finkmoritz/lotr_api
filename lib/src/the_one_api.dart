@@ -32,7 +32,9 @@ class TheOneApi {
     );
   }
 
-  Future<Book?> getBook(String id) async {
+  Future<Book?> getBook({
+    required String id,
+  }) async {
     Response<Book> books = await getBooks(
       id: id,
     );
@@ -41,11 +43,26 @@ class TheOneApi {
 
   Future<Response<Chapter>> getChapters({
     required String bookId,
+    String? chapterId,
   }) async {
     return _getResponse<Chapter>(
       mapping: (c) => Chapter.fromJson(c),
       endpoint: 'book/${bookId}/chapter',
+      queries: [
+        '_id=${chapterId ?? ''}',
+      ],
     );
+  }
+
+  Future<Chapter?> getChapter({
+    required String bookId,
+    required String chapterId,
+  }) async {
+    Response<Chapter> chapters = await getChapters(
+      bookId: bookId,
+      chapterId: chapterId,
+    );
+    return chapters.docs.isNotEmpty ? chapters.docs.first : null;
   }
 
   Future<Response<T>> _getResponse<T>({

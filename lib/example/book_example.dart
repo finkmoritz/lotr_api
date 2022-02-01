@@ -6,7 +6,9 @@ void main() async {
   print(response);
 
   String firstBookId = response.docs.first.id;
-  Book? firstBook = await theOneApi.getBook(firstBookId);
+  Book? firstBook = await theOneApi.getBook(
+    id: firstBookId,
+  );
   print(firstBook);
 
   Response<Chapter> chapters = await theOneApi.getChapters(
