@@ -1,3 +1,1 @@
-enum ApiVersion {
-  v2
-}
+enum ApiVersion { v2 }
