@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:the_one_api/src/model/response.dart';
 
 import 'config/api_version.dart';
 import 'model/book.dart';
@@ -18,23 +19,30 @@ class TheOneApi {
     _baseUrl = "https://the-one-api.dev/v2";
   }
 
-  Future<List<Book>> getBooks() async {
-    var json = await _getResponse('book');
-    var books = json['docs'] as List;
-    return books.map((b) => Book.fromJson(b)).toList();
+  Future<Response<Book>> getBooks() async {
+    return _getResponse<Book>(
+      mapping: (b) => Book.fromJson(b),
+      endpoint: 'book',
+    );
   }
 
-  Future<dynamic> _getResponse(
-    String endpoint, {
-    String? query,
+  Future<Response<T>> _getResponse<T>({
+    required T Function(dynamic) mapping,
+    required String endpoint,
+    List<String?>? queries,
   }) async {
     String url = '${_baseUrl}/${endpoint}';
-    if(query != null) {
-      url += '?${query}';
+    if (queries != null) {
+      url += '?';
+      queries.forEach((query) => url += '${query}&');
     }
     var response = await http.get(Uri.parse(url));
-    if(response.statusCode == 200) {
-      return jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body);
+      return Response.fromJson(
+        json: json,
+        mapping: mapping,
+      );
     } else {
       throw Exception('Received error code ${response.statusCode} from API!');
     }
