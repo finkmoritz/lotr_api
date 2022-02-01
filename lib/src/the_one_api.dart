@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:the_one_api/src/model/chapter.dart';
 import 'package:the_one_api/src/model/response.dart';
 
 import 'config/api_version.dart';
@@ -36,6 +37,15 @@ class TheOneApi {
       id: id,
     );
     return books.docs.isNotEmpty ? books.docs.first : null;
+  }
+
+  Future<Response<Chapter>> getChapters({
+    required String bookId,
+  }) async {
+    return _getResponse<Chapter>(
+      mapping: (c) => Chapter.fromJson(c),
+      endpoint: 'book/${bookId}/chapter',
+    );
   }
 
   Future<Response<T>> _getResponse<T>({
