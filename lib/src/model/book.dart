@@ -1,6 +1,4 @@
-import 'package:the_one_api/src/model/doc.dart';
-
-class Book extends Doc<Book> {
+class Book {
   final String id;
   final String name;
 
