@@ -18,5 +18,8 @@ jobs:
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
 
-      - name: Book
+      - name: Book example
         run: dart lib/example/book_example.dart
+
+      - name: Movie example
+        run: dart lib/example/movie_example.dart

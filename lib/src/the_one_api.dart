@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:the_one_api/src/model/chapter.dart';
-import 'package:the_one_api/src/model/response.dart';
 
 import 'config/api_version.dart';
 import 'model/book.dart';
+import 'model/chapter.dart';
+import 'model/movie.dart';
+import 'model/quote.dart';
+import 'model/response.dart';
 
 class TheOneApi {
   final String? apiKey;
@@ -54,15 +56,49 @@ class TheOneApi {
     );
   }
 
-  Future<Chapter?> getChapter({
-    required String bookId,
-    required String chapterId,
+  Future<Response<Movie>> getMovies({
+    String? id,
   }) async {
-    Response<Chapter> chapters = await getChapters(
-      bookId: bookId,
-      chapterId: chapterId,
+    return _getResponse<Movie>(
+      mapping: (b) => Movie.fromJson(b),
+      endpoint: 'movie',
+      queries: [
+        '_id=${id ?? ''}',
+      ],
     );
-    return chapters.docs.isNotEmpty ? chapters.docs.first : null;
+  }
+
+  Future<Movie?> getMovie({
+    required String id,
+  }) async {
+    Response<Movie> movies = await getMovies(
+      id: id,
+    );
+    return movies.docs.isNotEmpty ? movies.docs.first : null;
+  }
+
+  Future<Response<Quote>> getQuotes({
+    required String movieId,
+    String? quoteId,
+  }) async {
+    return _getResponse<Quote>(
+      mapping: (c) => Quote.fromJson(c),
+      endpoint: 'movie/${movieId}/quote',
+      queries: [
+        '_id=${quoteId ?? ''}',
+      ],
+    );
+  }
+
+  Future<Quote?> getQuote({
+    required String movieId,
+    required String quoteId,
+  }) async {
+    Response<Quote> quotes = await getQuotes(
+      movieId: movieId,
+      quoteId: quoteId,
+    );
+    return quotes.docs.isNotEmpty ? quotes.docs.first : null;
   }
 
   Future<Response<T>> _getResponse<T>({
@@ -70,12 +106,22 @@ class TheOneApi {
     required String endpoint,
     List<String?>? queries,
   }) async {
+    Map<String, String> headers = {};
+    if(apiKey != null) {
+      headers['Authorization'] = 'Bearer $apiKey';
+    }
+
     String url = '${_baseUrl}/${endpoint}';
     if (queries != null) {
       url += '?';
       queries.forEach((query) => url += '${query}&');
     }
-    var response = await http.get(Uri.parse(url));
+
+    var response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
       return Response.fromJson(
