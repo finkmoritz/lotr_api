@@ -1,7 +1,7 @@
 import 'package:the_one_api/the_one_api.dart';
 
 void main(List<String> args) async {
-  if(args.isEmpty) {
+  if (args.isEmpty) {
     throw Exception('Expected API key as last argument, but received none.');
   }
 

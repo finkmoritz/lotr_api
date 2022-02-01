@@ -107,7 +107,7 @@ class TheOneApi {
     List<String?>? queries,
   }) async {
     Map<String, String> headers = {};
-    if(apiKey != null) {
+    if (apiKey != null) {
       headers['Authorization'] = 'Bearer $apiKey';
     }
 
