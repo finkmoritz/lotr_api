@@ -19,11 +19,23 @@ class TheOneApi {
     _baseUrl = "https://the-one-api.dev/v2";
   }
 
-  Future<Response<Book>> getBooks() async {
+  Future<Response<Book>> getBooks({
+    String? id,
+  }) async {
     return _getResponse<Book>(
       mapping: (b) => Book.fromJson(b),
       endpoint: 'book',
+      queries: [
+        '_id=${id ?? ''}',
+      ],
     );
+  }
+
+  Future<Book?> getBook(String id) async {
+    Response<Book> books = await getBooks(
+      id: id,
+    );
+    return books.docs.isNotEmpty ? books.docs.first : null;
   }
 
   Future<Response<T>> _getResponse<T>({
