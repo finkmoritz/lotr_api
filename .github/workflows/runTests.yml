@@ -23,3 +23,9 @@ jobs:
 
       - name: Movie example
         run: dart lib/example/movie_example.dart ${{ secrets.API_KEY }}
+
+      - name: Quote example
+        run: dart lib/example/quote_example.dart ${{ secrets.API_KEY }}
+
+      - name: Chapter example
+        run: dart lib/example/chapter_example.dart ${{ secrets.API_KEY }}

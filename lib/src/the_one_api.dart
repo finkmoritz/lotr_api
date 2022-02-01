@@ -43,7 +43,7 @@ class TheOneApi {
     return books.docs.isNotEmpty ? books.docs.first : null;
   }
 
-  Future<Response<Chapter>> getChapters({
+  Future<Response<Chapter>> getBookChapters({
     required String bookId,
     String? chapterId,
   }) async {
@@ -77,7 +77,7 @@ class TheOneApi {
     return movies.docs.isNotEmpty ? movies.docs.first : null;
   }
 
-  Future<Response<Quote>> getQuotes({
+  Future<Response<Quote>> getMovieQuotes({
     required String movieId,
     String? quoteId,
   }) async {
@@ -90,15 +90,54 @@ class TheOneApi {
     );
   }
 
-  Future<Quote?> getQuote({
-    required String movieId,
-    required String quoteId,
+  Future<Response<Quote>> getQuotes({
+    String? id,
   }) async {
-    Response<Quote> quotes = await getQuotes(
-      movieId: movieId,
-      quoteId: quoteId,
+    return _getResponse<Quote>(
+      mapping: (c) => Quote.fromJson(c),
+      endpoint: 'quote',
+      queries: [
+        '_id=${id ?? ''}',
+      ],
+    );
+  }
+
+  Future<Quote?> getQuote({
+    String? id,
+  }) async {
+    Response<Quote> quotes = await _getResponse<Quote>(
+      mapping: (c) => Quote.fromJson(c),
+      endpoint: 'quote',
+      queries: [
+        '_id=${id ?? ''}',
+      ],
     );
     return quotes.docs.isNotEmpty ? quotes.docs.first : null;
+  }
+
+  Future<Response<Chapter>> getChapters({
+    String? id,
+  }) async {
+    return _getResponse<Chapter>(
+      mapping: (c) => Chapter.fromJson(c),
+      endpoint: 'chapter',
+      queries: [
+        '_id=${id ?? ''}',
+      ],
+    );
+  }
+
+  Future<Chapter?> getChapter({
+    String? id,
+  }) async {
+    Response<Chapter> chapters = await _getResponse<Chapter>(
+      mapping: (c) => Chapter.fromJson(c),
+      endpoint: 'chapter',
+      queries: [
+        '_id=${id ?? ''}',
+      ],
+    );
+    return chapters.docs.isNotEmpty ? chapters.docs.first : null;
   }
 
   Future<Response<T>> _getResponse<T>({

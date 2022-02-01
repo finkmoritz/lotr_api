@@ -11,7 +11,7 @@ void main() async {
   );
   print(firstBook);
 
-  Response<Chapter> chapters = await theOneApi.getChapters(
+  Response<Chapter> chapters = await theOneApi.getBookChapters(
     bookId: firstBookId,
   );
   print(chapters.docs);

@@ -17,7 +17,7 @@ void main(List<String> args) async {
   );
   print(lastMovie);
 
-  Response<Quote> quotes = await theOneApi.getQuotes(
+  Response<Quote> quotes = await theOneApi.getMovieQuotes(
     movieId: lastMovieId,
   );
   print(quotes.docs);
