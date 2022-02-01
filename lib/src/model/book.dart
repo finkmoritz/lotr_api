@@ -21,12 +21,4 @@ class Book {
     name: $name,
 )''';
   }
-
-  @override
-  Book fromJson(Map<String, dynamic> json) {
-    return Book(
-      id: json['_id'],
-      name: json['name'],
-    );
-  }
 }
