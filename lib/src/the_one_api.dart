@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'config/api_version.dart';
 import 'model/book.dart';
 import 'model/chapter.dart';
+import 'model/character.dart';
 import 'model/movie.dart';
 import 'model/quote.dart';
 import 'model/response.dart';
@@ -84,6 +85,40 @@ class TheOneApi {
     return _getResponse<Quote>(
       mapping: (c) => Quote.fromJson(c),
       endpoint: 'movie/${movieId}/quote',
+      queries: [
+        '_id=${quoteId ?? ''}',
+      ],
+    );
+  }
+
+  Future<Response<Character>> getCharacters({
+    String? id,
+  }) async {
+    return _getResponse<Character>(
+      mapping: (b) => Character.fromJson(b),
+      endpoint: 'character',
+      queries: [
+        '_id=${id ?? ''}',
+      ],
+    );
+  }
+
+  Future<Character?> getCharacter({
+    required String id,
+  }) async {
+    Response<Character> characters = await getCharacters(
+      id: id,
+    );
+    return characters.docs.isNotEmpty ? characters.docs.first : null;
+  }
+
+  Future<Response<Quote>> getCharacterQuotes({
+    required String characterId,
+    String? quoteId,
+  }) async {
+    return _getResponse<Quote>(
+      mapping: (c) => Quote.fromJson(c),
+      endpoint: 'character/${characterId}/quote',
       queries: [
         '_id=${quoteId ?? ''}',
       ],
