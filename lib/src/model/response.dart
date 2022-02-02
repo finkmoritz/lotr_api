@@ -19,6 +19,9 @@ class Response<T> {
     required Map<String, dynamic> json,
     required T Function(dynamic) mapping,
   }) {
+    if (json['success'] != null && !json['success']) {
+      throw Exception('API returned error: ${json['message']}');
+    }
     Iterable docsIt = json['docs'];
     return Response(
       docs: docsIt.map((d) => mapping(d)).toList(),

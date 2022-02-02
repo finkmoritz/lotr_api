@@ -16,12 +16,15 @@ void main() async {
   );
   print(chapters.docs);
 
-  Response<Book> twoBooks = await theOneApi.getBooks(
+  Response<Book> booksExceptFirstOne = await theOneApi.getBooks(
     pagination: Pagination(
       limit: 2,
       page: 1,
-      offset: 1,
+      offset: 0,
     ),
+    filters: [
+      Book.filterId.notEquals(firstBookId),
+    ],
   );
-  print(twoBooks);
+  print(booksExceptFirstOne);
 }

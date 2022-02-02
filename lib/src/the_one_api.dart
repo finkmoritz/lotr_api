@@ -9,6 +9,7 @@ import 'model/character.dart';
 import 'model/movie.dart';
 import 'model/quote.dart';
 import 'model/response.dart';
+import 'query/filter/filter.dart';
 import 'query/pagination/pagination.dart';
 
 class TheOneApi {
@@ -25,16 +26,14 @@ class TheOneApi {
   }
 
   Future<Response<Book>> getBooks({
-    String? id,
     Pagination? pagination,
+    List<Filter> filters = const [],
   }) async {
     return _getResponse<Book>(
       mapping: (b) => Book.fromJson(b),
       endpoint: 'book',
-      queries: [
-        '_id=${id ?? ''}',
-      ],
       pagination: pagination,
+      filters: filters,
     );
   }
 
@@ -42,7 +41,9 @@ class TheOneApi {
     required String id,
   }) async {
     Response<Book> books = await getBooks(
-      id: id,
+      filters: [
+        Book.filterId.equals(id),
+      ],
     );
     return books.docs.isNotEmpty ? books.docs.first : null;
   }
@@ -183,19 +184,21 @@ class TheOneApi {
     required String endpoint,
     List<String?>? queries,
     Pagination? pagination,
+    List<Filter> filters = const [],
   }) async {
     Map<String, String> headers = {};
     if (apiKey != null) {
       headers['Authorization'] = 'Bearer $apiKey';
     }
 
-    String url = '${_baseUrl}/${endpoint}';
-    if (queries != null || pagination != null) {
-      url += '?';
-    }
+    String url = '${_baseUrl}/${endpoint}?';
 
     queries?.forEach((query) => url += '${query}&');
     pagination?.getQueries().forEach((query) => url += '${query}&');
+    filters.forEach((filter) {
+      filter.getQueries().forEach((query) => url += '${query}&');
+    });
+    print(url);
 
     var response = await http.get(
       Uri.parse(url),
