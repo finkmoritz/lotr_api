@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:the_one_api/src/query/filter/id_filter.dart';
 
 import 'config/api_version.dart';
 import 'model/book.dart';
@@ -27,13 +28,15 @@ class TheOneApi {
 
   Future<Response<Book>> getBooks({
     Pagination? pagination,
-    List<Filter> filters = const [],
+    IdFilter? idFilter,
   }) async {
     return _getResponse<Book>(
       mapping: (b) => Book.fromJson(b),
       endpoint: 'book',
       pagination: pagination,
-      filters: filters,
+      filters: [
+        idFilter,
+      ],
     );
   }
 
@@ -41,9 +44,9 @@ class TheOneApi {
     required String id,
   }) async {
     Response<Book> books = await getBooks(
-      filters: [
-        Book.filterId.equals(id),
-      ],
+      idFilter: IdFilter(
+        matches: id,
+      ),
     );
     return books.docs.isNotEmpty ? books.docs.first : null;
   }
@@ -184,7 +187,7 @@ class TheOneApi {
     required String endpoint,
     List<String?>? queries,
     Pagination? pagination,
-    List<Filter> filters = const [],
+    List<Filter?> filters = const [],
   }) async {
     Map<String, String> headers = {};
     if (apiKey != null) {
@@ -196,7 +199,7 @@ class TheOneApi {
     queries?.forEach((query) => url += '${query}&');
     pagination?.getQueries().forEach((query) => url += '${query}&');
     filters.forEach((filter) {
-      filter.getQueries().forEach((query) => url += '${query}&');
+      filter?.getQueries().forEach((query) => url += '${query}&');
     });
 
     var response = await http.get(

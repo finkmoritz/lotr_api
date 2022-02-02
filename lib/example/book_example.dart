@@ -22,9 +22,9 @@ void main() async {
       page: 1,
       offset: 0,
     ),
-    filters: [
-      Book.filterId.notEquals(firstBookId),
-    ],
+    idFilter: IdFilter(
+      notMatches: firstBookId,
+    ),
   );
   print(booksExceptFirstOne);
 }

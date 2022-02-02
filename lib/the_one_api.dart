@@ -9,4 +9,5 @@ export 'src/model/character.dart' show Character;
 export 'src/model/movie.dart' show Movie;
 export 'src/model/quote.dart' show Quote;
 
+export 'src/query/filter/id_filter.dart' show IdFilter;
 export 'src/query/pagination/pagination.dart' show Pagination;
