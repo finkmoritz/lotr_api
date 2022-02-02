@@ -1,7 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:the_one_api/src/query/filter/academy_award_nominations_filter.dart';
+import 'package:the_one_api/src/query/filter/academy_award_wins_filter.dart';
 import 'package:the_one_api/src/query/filter/birth_filter.dart';
+import 'package:the_one_api/src/query/filter/box_office_revenue_in_millions_filter.dart';
+import 'package:the_one_api/src/query/filter/budget_in_millions_filter.dart';
 import 'package:the_one_api/src/query/filter/chapter_name_filter.dart';
 import 'package:the_one_api/src/query/filter/death_filter.dart';
 import 'package:the_one_api/src/query/filter/dialog_filter.dart';
@@ -12,6 +16,8 @@ import 'package:the_one_api/src/query/filter/id_filter.dart';
 import 'package:the_one_api/src/query/filter/name_filter.dart';
 import 'package:the_one_api/src/query/filter/race_filter.dart';
 import 'package:the_one_api/src/query/filter/realm_filter.dart';
+import 'package:the_one_api/src/query/filter/rotten_tomatoes_score_filter.dart';
+import 'package:the_one_api/src/query/filter/runtime_in_minutes_filter.dart';
 import 'package:the_one_api/src/query/filter/spouse_filter.dart';
 import 'package:the_one_api/src/query/filter/wiki_url_filter.dart';
 
@@ -83,6 +89,13 @@ class TheOneApi {
   Future<Response<Movie>> getMovies({
     Pagination? pagination,
     IdFilter? idFilter,
+    NameFilter? nameFilter,
+    RuntimeInMinutesFilter? runtimeInMinutesFilter,
+    BudgetInMillionsFilter? budgetInMillionsFilter,
+    BoxOfficeRevenueInMillionsFilter? boxOfficeRevenueInMillionsFilter,
+    AcademyAwardNominationsFilter? academyAwardNominationsFilter,
+    AcademyAwardWinsFilter? academyAwardWinsFilter,
+    RottenTomatoesScoreFilter? rottenTomatoesScoreFilter,
   }) async {
     return _getResponse<Movie>(
       mapping: (b) => Movie.fromJson(b),
@@ -90,6 +103,13 @@ class TheOneApi {
       pagination: pagination,
       filters: [
         idFilter,
+        nameFilter,
+        runtimeInMinutesFilter,
+        budgetInMillionsFilter,
+        boxOfficeRevenueInMillionsFilter,
+        academyAwardNominationsFilter,
+        academyAwardWinsFilter,
+        rottenTomatoesScoreFilter,
       ],
     );
   }
