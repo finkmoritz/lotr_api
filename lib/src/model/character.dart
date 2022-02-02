@@ -1,4 +1,4 @@
-import 'package:the_one_api/src/util/Utils.dart';
+import 'package:the_one_api/src/util/utils.dart';
 
 class Character {
   final String id;
