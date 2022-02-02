@@ -198,7 +198,6 @@ class TheOneApi {
     filters.forEach((filter) {
       filter.getQueries().forEach((query) => url += '${query}&');
     });
-    print(url);
 
     var response = await http.get(
       Uri.parse(url),
