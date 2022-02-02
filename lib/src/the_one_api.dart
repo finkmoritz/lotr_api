@@ -44,9 +44,7 @@ class TheOneApi {
     required String id,
   }) async {
     Response<Book> books = await getBooks(
-      idFilter: IdFilter(
-        matches: id,
-      ),
+      idFilter: IdFilter()..matches = id,
     );
     return books.docs.isNotEmpty ? books.docs.first : null;
   }
