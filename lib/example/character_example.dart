@@ -21,4 +21,10 @@ void main(List<String> args) async {
     characterId: lastCharacterId,
   );
   print(quotes.docs);
+
+  Response<Character> femaleHumans = await theOneApi.getCharacters(
+    genderFilter: GenderFilter()..matches = GenderFilter.female,
+    raceFilter: RaceFilter()..matches = 'Human',
+  );
+  print(femaleHumans);
 }

@@ -1,9 +1,18 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:the_one_api/src/query/filter/birth_filter.dart';
 import 'package:the_one_api/src/query/filter/chapter_name_filter.dart';
+import 'package:the_one_api/src/query/filter/death_filter.dart';
+import 'package:the_one_api/src/query/filter/gender_filter.dart';
+import 'package:the_one_api/src/query/filter/hair_filter.dart';
+import 'package:the_one_api/src/query/filter/height_filter.dart';
 import 'package:the_one_api/src/query/filter/id_filter.dart';
 import 'package:the_one_api/src/query/filter/name_filter.dart';
+import 'package:the_one_api/src/query/filter/race_filter.dart';
+import 'package:the_one_api/src/query/filter/realm_filter.dart';
+import 'package:the_one_api/src/query/filter/spouse_filter.dart';
+import 'package:the_one_api/src/query/filter/wiki_url_filter.dart';
 
 import 'config/api_version.dart';
 import 'model/book.dart';
@@ -111,6 +120,16 @@ class TheOneApi {
   Future<Response<Character>> getCharacters({
     Pagination? pagination,
     IdFilter? idFilter,
+    NameFilter? nameFilter,
+    BirthFilter? birthFilter,
+    DeathFilter? deathFilter,
+    HairFilter? hairFilter,
+    GenderFilter? genderFilter,
+    HeightFilter? heightFilter,
+    RealmFilter? realmFilter,
+    SpouseFilter? spouseFilter,
+    RaceFilter? raceFilter,
+    WikiUrlFilter? wikiUrlFilter,
   }) async {
     return _getResponse<Character>(
       mapping: (b) => Character.fromJson(b),
@@ -118,6 +137,16 @@ class TheOneApi {
       pagination: pagination,
       filters: [
         idFilter,
+        nameFilter,
+        birthFilter,
+        deathFilter,
+        hairFilter,
+        genderFilter,
+        heightFilter,
+        realmFilter,
+        spouseFilter,
+        raceFilter,
+        wikiUrlFilter,
       ],
     );
   }
