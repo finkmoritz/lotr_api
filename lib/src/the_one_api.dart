@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:the_one_api/src/query/filter/birth_filter.dart';
 import 'package:the_one_api/src/query/filter/chapter_name_filter.dart';
 import 'package:the_one_api/src/query/filter/death_filter.dart';
+import 'package:the_one_api/src/query/filter/dialog_filter.dart';
 import 'package:the_one_api/src/query/filter/gender_filter.dart';
 import 'package:the_one_api/src/query/filter/hair_filter.dart';
 import 'package:the_one_api/src/query/filter/height_filter.dart';
@@ -106,6 +107,7 @@ class TheOneApi {
     required String movieId,
     Pagination? pagination,
     IdFilter? idFilter,
+    DialogFilter? dialogFilter,
   }) async {
     return _getResponse<Quote>(
       mapping: (c) => Quote.fromJson(c),
@@ -113,6 +115,7 @@ class TheOneApi {
       pagination: pagination,
       filters: [
         idFilter,
+        dialogFilter,
       ],
     );
   }
@@ -164,6 +167,7 @@ class TheOneApi {
     required String characterId,
     Pagination? pagination,
     IdFilter? idFilter,
+    DialogFilter? dialogFilter,
   }) async {
     return _getResponse<Quote>(
       mapping: (c) => Quote.fromJson(c),
@@ -171,6 +175,7 @@ class TheOneApi {
       pagination: pagination,
       filters: [
         idFilter,
+        dialogFilter,
       ],
     );
   }
@@ -178,6 +183,7 @@ class TheOneApi {
   Future<Response<Quote>> getQuotes({
     Pagination? pagination,
     IdFilter? idFilter,
+    DialogFilter? dialogFilter,
   }) async {
     return _getResponse<Quote>(
       mapping: (c) => Quote.fromJson(c),
@@ -185,6 +191,7 @@ class TheOneApi {
       pagination: pagination,
       filters: [
         idFilter,
+        dialogFilter,
       ],
     );
   }
