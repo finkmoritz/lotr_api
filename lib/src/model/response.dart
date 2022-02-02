@@ -3,16 +3,16 @@ class Response<T> {
   final int total;
   final int limit;
   final int offset;
-  final int page;
-  final int pages;
+  final int? page;
+  final int? pages;
 
   Response({
     required this.docs,
     required this.total,
     required this.limit,
     required this.offset,
-    required this.page,
-    required this.pages,
+    this.page,
+    this.pages,
   });
 
   factory Response.fromJson({

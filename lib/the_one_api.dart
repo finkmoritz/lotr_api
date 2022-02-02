@@ -8,3 +8,5 @@ export 'src/model/chapter.dart' show Chapter;
 export 'src/model/character.dart' show Character;
 export 'src/model/movie.dart' show Movie;
 export 'src/model/quote.dart' show Quote;
+
+export 'src/query/pagination/pagination.dart' show Pagination;

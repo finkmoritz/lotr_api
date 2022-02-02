@@ -9,6 +9,7 @@ import 'model/character.dart';
 import 'model/movie.dart';
 import 'model/quote.dart';
 import 'model/response.dart';
+import 'query/pagination/pagination.dart';
 
 class TheOneApi {
   final String? apiKey;
@@ -25,6 +26,7 @@ class TheOneApi {
 
   Future<Response<Book>> getBooks({
     String? id,
+    Pagination? pagination,
   }) async {
     return _getResponse<Book>(
       mapping: (b) => Book.fromJson(b),
@@ -32,6 +34,7 @@ class TheOneApi {
       queries: [
         '_id=${id ?? ''}',
       ],
+      pagination: pagination,
     );
   }
 
@@ -179,6 +182,7 @@ class TheOneApi {
     required T Function(dynamic) mapping,
     required String endpoint,
     List<String?>? queries,
+    Pagination? pagination,
   }) async {
     Map<String, String> headers = {};
     if (apiKey != null) {
@@ -186,10 +190,12 @@ class TheOneApi {
     }
 
     String url = '${_baseUrl}/${endpoint}';
-    if (queries != null) {
+    if (queries != null || pagination != null) {
       url += '?';
-      queries.forEach((query) => url += '${query}&');
     }
+
+    queries?.forEach((query) => url += '${query}&');
+    pagination?.getQueries().forEach((query) => url += '${query}&');
 
     var response = await http.get(
       Uri.parse(url),

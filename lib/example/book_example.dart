@@ -15,4 +15,13 @@ void main() async {
     bookId: firstBookId,
   );
   print(chapters.docs);
+
+  Response<Book> twoBooks = await theOneApi.getBooks(
+    pagination: Pagination(
+      limit: 2,
+      page: 1,
+      offset: 1,
+    ),
+  );
+  print(twoBooks);
 }
