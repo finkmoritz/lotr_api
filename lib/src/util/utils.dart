@@ -12,4 +12,8 @@ class Utils {
     }
     return value;
   }
+
+  static void printWarning(String message) {
+    print('the_one_api WARNING: $message');
+  }
 }

@@ -8,7 +8,10 @@ void main(List<String> args) async {
   var theOneApi = TheOneApi(
     apiKey: args.first,
   );
-  Response<Movie> response = await theOneApi.getMovies();
+  Response<Movie> response = await theOneApi.getMovies(
+    nameFilter: NameFilter()..exists = true,
+    budgetInMillionsFilter: BudgetInMillionsFilter()..greaterThanOrEquals = 99,
+  );
   print(response);
 
   String lastMovieId = response.docs.last.id;
