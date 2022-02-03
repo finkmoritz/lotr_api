@@ -12,9 +12,10 @@ void main(List<String> args) async {
   Response<Quote> quotes = await theOneApi.getQuotes(
     sorting: QuoteSortings.byDialogAsc,
     pagination: Pagination(
-      limit: 100,
-      offset: 10,
+      limit: 10,
+      offset: 2,
     ),
+    dialogFilter: DialogFilter()..matchesRegex = 'Frodo',
   );
   print(quotes);
 
