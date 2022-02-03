@@ -20,6 +20,8 @@ import 'package:the_one_api/src/query/filter/rotten_tomatoes_score_filter.dart';
 import 'package:the_one_api/src/query/filter/runtime_in_minutes_filter.dart';
 import 'package:the_one_api/src/query/filter/spouse_filter.dart';
 import 'package:the_one_api/src/query/filter/wiki_url_filter.dart';
+import 'package:the_one_api/src/query/sorting/book/book_sorting.dart';
+import 'package:the_one_api/src/query/sorting/sorting.dart';
 
 import 'config/api_version.dart';
 import 'model/book.dart';
@@ -46,6 +48,7 @@ class TheOneApi {
 
   Future<Response<Book>> getBooks({
     Pagination? pagination,
+    BookSorting? sorting,
     IdFilter? idFilter,
     NameFilter? nameFilter,
   }) async {
@@ -53,6 +56,7 @@ class TheOneApi {
       mapping: (b) => Book.fromJson(b),
       endpoint: 'book',
       pagination: pagination,
+      sorting: sorting,
       filters: [
         idFilter,
         nameFilter,
@@ -72,6 +76,7 @@ class TheOneApi {
   Future<Response<Chapter>> getBookChapters({
     required String bookId,
     Pagination? pagination,
+    Sorting? sorting,
     IdFilter? idFilter,
     ChapterNameFilter? chapterNameFilter,
   }) async {
@@ -79,6 +84,7 @@ class TheOneApi {
       mapping: (c) => Chapter.fromJson(c),
       endpoint: 'book/${bookId}/chapter',
       pagination: pagination,
+      sorting: sorting,
       filters: [
         idFilter,
         chapterNameFilter,
@@ -88,6 +94,7 @@ class TheOneApi {
 
   Future<Response<Movie>> getMovies({
     Pagination? pagination,
+    Sorting? sorting,
     IdFilter? idFilter,
     NameFilter? nameFilter,
     RuntimeInMinutesFilter? runtimeInMinutesFilter,
@@ -101,6 +108,7 @@ class TheOneApi {
       mapping: (b) => Movie.fromJson(b),
       endpoint: 'movie',
       pagination: pagination,
+      sorting: sorting,
       filters: [
         idFilter,
         nameFilter,
@@ -126,6 +134,7 @@ class TheOneApi {
   Future<Response<Quote>> getMovieQuotes({
     required String movieId,
     Pagination? pagination,
+    Sorting? sorting,
     IdFilter? idFilter,
     DialogFilter? dialogFilter,
   }) async {
@@ -133,6 +142,7 @@ class TheOneApi {
       mapping: (c) => Quote.fromJson(c),
       endpoint: 'movie/${movieId}/quote',
       pagination: pagination,
+      sorting: sorting,
       filters: [
         idFilter,
         dialogFilter,
@@ -142,6 +152,7 @@ class TheOneApi {
 
   Future<Response<Character>> getCharacters({
     Pagination? pagination,
+    Sorting? sorting,
     IdFilter? idFilter,
     NameFilter? nameFilter,
     BirthFilter? birthFilter,
@@ -158,6 +169,7 @@ class TheOneApi {
       mapping: (b) => Character.fromJson(b),
       endpoint: 'character',
       pagination: pagination,
+      sorting: sorting,
       filters: [
         idFilter,
         nameFilter,
@@ -186,6 +198,7 @@ class TheOneApi {
   Future<Response<Quote>> getCharacterQuotes({
     required String characterId,
     Pagination? pagination,
+    Sorting? sorting,
     IdFilter? idFilter,
     DialogFilter? dialogFilter,
   }) async {
@@ -193,6 +206,7 @@ class TheOneApi {
       mapping: (c) => Quote.fromJson(c),
       endpoint: 'character/${characterId}/quote',
       pagination: pagination,
+      sorting: sorting,
       filters: [
         idFilter,
         dialogFilter,
@@ -202,6 +216,7 @@ class TheOneApi {
 
   Future<Response<Quote>> getQuotes({
     Pagination? pagination,
+    Sorting? sorting,
     IdFilter? idFilter,
     DialogFilter? dialogFilter,
   }) async {
@@ -209,6 +224,7 @@ class TheOneApi {
       mapping: (c) => Quote.fromJson(c),
       endpoint: 'quote',
       pagination: pagination,
+      sorting: sorting,
       filters: [
         idFilter,
         dialogFilter,
@@ -227,6 +243,7 @@ class TheOneApi {
 
   Future<Response<Chapter>> getChapters({
     Pagination? pagination,
+    Sorting? sorting,
     IdFilter? idFilter,
     ChapterNameFilter? chapterNameFilter,
   }) async {
@@ -234,6 +251,7 @@ class TheOneApi {
       mapping: (c) => Chapter.fromJson(c),
       endpoint: 'chapter',
       pagination: pagination,
+      sorting: sorting,
       filters: [
         idFilter,
         chapterNameFilter,
@@ -254,6 +272,7 @@ class TheOneApi {
     required T Function(dynamic) mapping,
     required String endpoint,
     Pagination? pagination,
+    Sorting? sorting,
     List<Filter?> filters = const [],
   }) async {
     Map<String, String> headers = {};
@@ -264,6 +283,7 @@ class TheOneApi {
     String url = '${_baseUrl}/${endpoint}?';
 
     pagination?.getQueries().forEach((query) => url += '${query}&');
+    sorting?.getQueries().forEach((query) => url += '${query}&');
     filters.forEach((filter) {
       filter?.getQueries().forEach((query) => url += '${query}&');
     });

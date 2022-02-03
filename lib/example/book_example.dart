@@ -22,6 +22,7 @@ void main() async {
       page: 1,
       offset: 0,
     ),
+    sorting: BookSortings.byNameAsc,
     idFilter: IdFilter()..notMatches = firstBookId,
   );
   print(booksExceptFirstOne);
