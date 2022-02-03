@@ -19,4 +19,6 @@ class ChapterSortings {
     attribute: 'chapterName',
     direction: SortingDirection.desc,
   );
+
+  ChapterSortings._() {}
 }

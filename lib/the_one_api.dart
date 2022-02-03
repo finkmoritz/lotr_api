@@ -33,9 +33,14 @@ export 'src/query/filter/runtime_in_minutes_filter.dart'
     show RuntimeInMinutesFilter;
 export 'src/query/filter/spouse_filter.dart' show SpouseFilter;
 export 'src/query/filter/wiki_url_filter.dart' show WikiUrlFilter;
+
 export 'src/query/pagination/pagination.dart' show Pagination;
 
 export 'src/query/sorting/book/book_sortings.dart' show BookSortings;
 export 'src/query/sorting/chapter/chapter_sortings.dart' show ChapterSortings;
+export 'src/query/sorting/character/character_sortings.dart'
+    show CharacterSortings;
+export 'src/query/sorting/movie/movie_sortings.dart' show MovieSortings;
+export 'src/query/sorting/quote/quote_sortings.dart' show QuoteSortings;
 
 export 'src/the_one_api.dart' show TheOneApi;

@@ -9,7 +9,13 @@ void main(List<String> args) async {
     apiKey: args.first,
   );
 
-  Response<Quote> quotes = await theOneApi.getQuotes();
+  Response<Quote> quotes = await theOneApi.getQuotes(
+    sorting: QuoteSortings.byDialogAsc,
+    pagination: Pagination(
+      limit: 100,
+      offset: 10,
+    ),
+  );
   print(quotes);
 
   Quote? quote = await theOneApi.getQuote(

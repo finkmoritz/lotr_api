@@ -22,6 +22,9 @@ import 'package:the_one_api/src/query/filter/spouse_filter.dart';
 import 'package:the_one_api/src/query/filter/wiki_url_filter.dart';
 import 'package:the_one_api/src/query/sorting/book/book_sorting.dart';
 import 'package:the_one_api/src/query/sorting/chapter/chapter_sorting.dart';
+import 'package:the_one_api/src/query/sorting/character/character_sorting.dart';
+import 'package:the_one_api/src/query/sorting/movie/movie_sorting.dart';
+import 'package:the_one_api/src/query/sorting/quote/quote_sorting.dart';
 import 'package:the_one_api/src/query/sorting/sorting.dart';
 
 import 'config/api_version.dart';
@@ -95,7 +98,7 @@ class TheOneApi {
 
   Future<Response<Movie>> getMovies({
     Pagination? pagination,
-    Sorting? sorting,
+    MovieSorting? sorting,
     IdFilter? idFilter,
     NameFilter? nameFilter,
     RuntimeInMinutesFilter? runtimeInMinutesFilter,
@@ -135,7 +138,7 @@ class TheOneApi {
   Future<Response<Quote>> getMovieQuotes({
     required String movieId,
     Pagination? pagination,
-    Sorting? sorting,
+    QuoteSorting? sorting,
     IdFilter? idFilter,
     DialogFilter? dialogFilter,
   }) async {
@@ -153,7 +156,7 @@ class TheOneApi {
 
   Future<Response<Character>> getCharacters({
     Pagination? pagination,
-    Sorting? sorting,
+    CharacterSorting? sorting,
     IdFilter? idFilter,
     NameFilter? nameFilter,
     BirthFilter? birthFilter,
@@ -199,7 +202,7 @@ class TheOneApi {
   Future<Response<Quote>> getCharacterQuotes({
     required String characterId,
     Pagination? pagination,
-    Sorting? sorting,
+    QuoteSorting? sorting,
     IdFilter? idFilter,
     DialogFilter? dialogFilter,
   }) async {
@@ -217,7 +220,7 @@ class TheOneApi {
 
   Future<Response<Quote>> getQuotes({
     Pagination? pagination,
-    Sorting? sorting,
+    QuoteSorting? sorting,
     IdFilter? idFilter,
     DialogFilter? dialogFilter,
   }) async {

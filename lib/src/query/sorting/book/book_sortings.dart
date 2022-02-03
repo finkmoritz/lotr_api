@@ -19,4 +19,6 @@ class BookSortings {
     attribute: 'name',
     direction: SortingDirection.desc,
   );
+
+  BookSortings._() {}
 }
