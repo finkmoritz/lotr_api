@@ -36,5 +36,6 @@ export 'src/query/filter/wiki_url_filter.dart' show WikiUrlFilter;
 export 'src/query/pagination/pagination.dart' show Pagination;
 
 export 'src/query/sorting/book/book_sortings.dart' show BookSortings;
+export 'src/query/sorting/chapter/chapter_sortings.dart' show ChapterSortings;
 
 export 'src/the_one_api.dart' show TheOneApi;

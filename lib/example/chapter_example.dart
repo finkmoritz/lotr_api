@@ -9,7 +9,9 @@ void main(List<String> args) async {
     apiKey: args.first,
   );
 
-  Response<Chapter> chapters = await theOneApi.getChapters();
+  Response<Chapter> chapters = await theOneApi.getChapters(
+    sorting: ChapterSortings.byChapterNameAsc,
+  );
   print(chapters);
 
   Chapter? chapter = await theOneApi.getChapter(

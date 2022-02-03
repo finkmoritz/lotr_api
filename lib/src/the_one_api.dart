@@ -21,6 +21,7 @@ import 'package:the_one_api/src/query/filter/runtime_in_minutes_filter.dart';
 import 'package:the_one_api/src/query/filter/spouse_filter.dart';
 import 'package:the_one_api/src/query/filter/wiki_url_filter.dart';
 import 'package:the_one_api/src/query/sorting/book/book_sorting.dart';
+import 'package:the_one_api/src/query/sorting/chapter/chapter_sorting.dart';
 import 'package:the_one_api/src/query/sorting/sorting.dart';
 
 import 'config/api_version.dart';
@@ -76,7 +77,7 @@ class TheOneApi {
   Future<Response<Chapter>> getBookChapters({
     required String bookId,
     Pagination? pagination,
-    Sorting? sorting,
+    ChapterSorting? sorting,
     IdFilter? idFilter,
     ChapterNameFilter? chapterNameFilter,
   }) async {
@@ -243,7 +244,7 @@ class TheOneApi {
 
   Future<Response<Chapter>> getChapters({
     Pagination? pagination,
-    Sorting? sorting,
+    ChapterSorting? sorting,
     IdFilter? idFilter,
     ChapterNameFilter? chapterNameFilter,
   }) async {
