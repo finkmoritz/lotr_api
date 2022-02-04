@@ -1,4 +1,4 @@
-import 'package:the_one_api/src/query/query.dart';
+import 'package:lotr_api/src/query/query.dart';
 
 class Pagination implements Query {
   final int? limit;

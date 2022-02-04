@@ -1,5 +1,5 @@
-import 'package:the_one_api/src/query/filter/filter.dart';
-import 'package:the_one_api/src/query/query.dart';
+import 'package:lotr_api/src/query/filter/filter.dart';
+import 'package:lotr_api/src/query/query.dart';
 
 class AttributeFilter implements Query {
   final String attribute;

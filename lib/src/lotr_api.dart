@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:the_one_api/src/query/filter/attribute_filter.dart';
-import 'package:the_one_api/src/query/filter/impl/matches.dart';
-import 'package:the_one_api/src/query/sorting/book/book_sorting.dart';
-import 'package:the_one_api/src/query/sorting/chapter/chapter_sorting.dart';
-import 'package:the_one_api/src/query/sorting/character/character_sorting.dart';
-import 'package:the_one_api/src/query/sorting/movie/movie_sorting.dart';
-import 'package:the_one_api/src/query/sorting/quote/quote_sorting.dart';
-import 'package:the_one_api/src/query/sorting/sorting.dart';
+import 'package:lotr_api/src/query/filter/attribute_filter.dart';
+import 'package:lotr_api/src/query/filter/impl/matches.dart';
+import 'package:lotr_api/src/query/sorting/book/book_sorting.dart';
+import 'package:lotr_api/src/query/sorting/chapter/chapter_sorting.dart';
+import 'package:lotr_api/src/query/sorting/character/character_sorting.dart';
+import 'package:lotr_api/src/query/sorting/movie/movie_sorting.dart';
+import 'package:lotr_api/src/query/sorting/quote/quote_sorting.dart';
+import 'package:lotr_api/src/query/sorting/sorting.dart';
 
 import 'config/api_version.dart';
 import 'model/book.dart';
@@ -20,13 +20,13 @@ import 'model/response.dart';
 import 'query/filter/filter.dart';
 import 'query/pagination/pagination.dart';
 
-class TheOneApi {
+class LotrApi {
   final String? apiKey;
   final ApiVersion apiVersion;
 
   late final String _baseUrl;
 
-  TheOneApi({
+  LotrApi({
     this.apiKey,
     this.apiVersion = ApiVersion.v2,
   }) {

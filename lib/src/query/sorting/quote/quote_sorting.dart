@@ -1,5 +1,5 @@
-import 'package:the_one_api/src/query/sorting/sorting.dart';
-import 'package:the_one_api/src/query/sorting/sorting_direction.dart';
+import 'package:lotr_api/src/query/sorting/sorting.dart';
+import 'package:lotr_api/src/query/sorting/sorting_direction.dart';
 
 class QuoteSorting extends Sorting {
   QuoteSorting({

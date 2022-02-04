@@ -10,10 +10,10 @@ https://the-one-api.dev/sign-up
 
 ## Objects
 
-Before making any requests create an instance of ```TheOneApi``` using your API access key:
+Before making any requests create an instance of ```LotrApi``` using your API access key:
 
 ```
-var theOneApi = TheOneApi(
+var lotrApi = LotrApi(
   apiKey: 'INSERT_YOUR_API_ACCESS_KEY_HERE',
 );
 ```
@@ -25,7 +25,7 @@ var theOneApi = TheOneApi(
 In order to retrieve data about all books:
 
 ```
-Response<Book> response = await theOneApi.getBooks();
+Response<Book> response = await lotrApi.getBooks();
 List<Book> books = response.docs;
 ```
 
@@ -35,7 +35,7 @@ You can also get a specific book by providing its ID:
 
 ```
 String firstBookId = books.first.id;
-Book? firstBook = await theOneApi.getBook(
+Book? firstBook = await lotrApi.getBook(
   id: firstBookId,
 );
 ```
@@ -43,31 +43,31 @@ Book? firstBook = await theOneApi.getBook(
 ### Chapter
 
 ```
-Response<Chapter> chapters = await theOneApi.getChapters();
+Response<Chapter> chapters = await lotrApi.getChapters();
 ```
 
 ### Character
 
 ```
-Response<Character> response = await theOneApi.getCharacters();
+Response<Character> response = await lotrApi.getCharacters();
 ```
 
 ### Movie
 
 ```
-Response<Movie> response = await theOneApi.getMovies();
+Response<Movie> response = await lotrApi.getMovies();
 ```
 
 ### Quote
 
 ```
-Response<Quote> quotes = await theOneApi.getQuotes();
+Response<Quote> quotes = await lotrApi.getQuotes();
 
-Response<Quote> quotes = await theOneApi.getCharacterQuotes(
+Response<Quote> quotes = await lotrApi.getCharacterQuotes(
   characterId: characterId, //TODO provide the character's ID
 );
 
-Response<Quote> quotes = await theOneApi.getMovieQuotes(
+Response<Quote> quotes = await lotrApi.getMovieQuotes(
   movieId: movieId, //TODO provide the movie's ID
 );
 ```
@@ -75,7 +75,7 @@ Response<Quote> quotes = await theOneApi.getMovieQuotes(
 ## Pagination
 
 ```
-Response<Quote> quotes = await theOneApi.getQuotes(
+Response<Quote> quotes = await lotrApi.getQuotes(
   pagination: Pagination(
     limit: 10,
     offset: 2,
@@ -87,7 +87,7 @@ Response<Quote> quotes = await theOneApi.getQuotes(
 ## Sorting
 
 ```
-Response<Quote> quotes = await theOneApi.getQuotes(
+Response<Quote> quotes = await lotrApi.getQuotes(
   sorting: QuoteSortings.byDialogAsc,
 );
 ```
@@ -97,7 +97,7 @@ Response<Quote> quotes = await theOneApi.getQuotes(
 You may also apply multiple filters for each attribute, e.g.:
 
 ```
-Response<Movie> response = await theOneApi.getMovies(
+Response<Movie> response = await lotrApi.getMovies(
   nameFilters: [
     Exists(),
   ],
@@ -125,6 +125,6 @@ Check the [example](example) folder for more examples.
 ## Support
 
 If you like this project, please support by starring the
-[Github repository](https://github.com/finkmoritz/the_one_api).
+[Github repository](https://github.com/finkmoritz/lotr_api).
 
 In case you discover a bug or have a feature request, feel free to create an issue there.

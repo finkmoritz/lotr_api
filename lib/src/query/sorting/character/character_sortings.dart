@@ -1,5 +1,5 @@
-import 'package:the_one_api/src/query/sorting/character/character_sorting.dart';
-import 'package:the_one_api/src/query/sorting/sorting_direction.dart';
+import 'package:lotr_api/src/query/sorting/character/character_sorting.dart';
+import 'package:lotr_api/src/query/sorting/sorting_direction.dart';
 
 class CharacterSortings {
   static final CharacterSorting byIdAsc = CharacterSorting(

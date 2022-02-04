@@ -1,20 +1,20 @@
-import 'package:the_one_api/the_one_api.dart';
+import 'package:lotr_api/lotr_api.dart';
 
 void main(List<String> args) async {
   if (args.isEmpty) {
     throw Exception('Expected API key as first argument, but received none.');
   }
 
-  var theOneApi = TheOneApi(
+  var lotrApi = LotrApi(
     apiKey: args.first,
   );
 
-  Response<Chapter> chapters = await theOneApi.getChapters(
+  Response<Chapter> chapters = await lotrApi.getChapters(
     sorting: ChapterSortings.byChapterNameAsc,
   );
   print(chapters);
 
-  Chapter? chapter = await theOneApi.getChapter(
+  Chapter? chapter = await lotrApi.getChapter(
     id: chapters.docs.first.id,
   );
   print(chapter);

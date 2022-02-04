@@ -1,4 +1,4 @@
-import 'package:the_one_api/src/query/filter/filter.dart';
+import 'package:lotr_api/src/query/filter/filter.dart';
 
 class GreaterThan implements Filter {
   final num value;

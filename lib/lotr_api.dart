@@ -31,4 +31,4 @@ export 'src/query/sorting/character/character_sortings.dart'
 export 'src/query/sorting/movie/movie_sortings.dart' show MovieSortings;
 export 'src/query/sorting/quote/quote_sortings.dart' show QuoteSortings;
 
-export 'src/the_one_api.dart' show TheOneApi;
+export 'src/lotr_api.dart' show LotrApi;

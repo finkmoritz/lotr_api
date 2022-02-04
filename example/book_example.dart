@@ -1,23 +1,23 @@
-import 'package:the_one_api/src/query/filter/impl/matches.dart';
-import 'package:the_one_api/the_one_api.dart';
+import 'package:lotr_api/src/query/filter/impl/matches.dart';
+import 'package:lotr_api/lotr_api.dart';
 
 void main() async {
-  var theOneApi = TheOneApi();
-  Response<Book> response = await theOneApi.getBooks();
+  var lotrApi = LotrApi();
+  Response<Book> response = await lotrApi.getBooks();
   print(response);
 
   String firstBookId = response.docs.first.id;
-  Book? firstBook = await theOneApi.getBook(
+  Book? firstBook = await lotrApi.getBook(
     id: firstBookId,
   );
   print(firstBook);
 
-  Response<Chapter> chapters = await theOneApi.getBookChapters(
+  Response<Chapter> chapters = await lotrApi.getBookChapters(
     bookId: firstBookId,
   );
   print(chapters.docs);
 
-  Response<Book> booksExceptFirstOne = await theOneApi.getBooks(
+  Response<Book> booksExceptFirstOne = await lotrApi.getBooks(
     pagination: Pagination(
       limit: 2,
       page: 1,

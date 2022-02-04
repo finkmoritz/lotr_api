@@ -14,6 +14,6 @@ class Utils {
   }
 
   static void printWarning(String message) {
-    print('the_one_api WARNING: $message');
+    print('lotr_api WARNING: $message');
   }
 }

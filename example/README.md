@@ -1,11 +1,11 @@
 # The Lord of the Rings API
 
 ```
-  var theOneApi = TheOneApi(
+  var lotrApi = LotrApi(
     apiKey: 'INSERT_YOUR_API_ACCESS_KEY_HERE',
   );
 
-  Response<Quote> quotes = await theOneApi.getQuotes(
+  Response<Quote> quotes = await lotrApi.getQuotes(
     sorting: QuoteSortings.byDialogAsc,
     pagination: Pagination(
       limit: 10,

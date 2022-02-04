@@ -1,14 +1,14 @@
-import 'package:the_one_api/the_one_api.dart';
+import 'package:lotr_api/lotr_api.dart';
 
 void main(List<String> args) async {
   if (args.isEmpty) {
     throw Exception('Expected API key as first argument, but received none.');
   }
 
-  var theOneApi = TheOneApi(
+  var lotrApi = LotrApi(
     apiKey: args.first,
   );
-  Response<Movie> response = await theOneApi.getMovies(
+  Response<Movie> response = await lotrApi.getMovies(
     nameFilters: [
       Exists(),
     ],
@@ -21,12 +21,12 @@ void main(List<String> args) async {
   print(response);
 
   String lastMovieId = response.docs.last.id;
-  Movie? lastMovie = await theOneApi.getMovie(
+  Movie? lastMovie = await lotrApi.getMovie(
     id: lastMovieId,
   );
   print(lastMovie);
 
-  Response<Quote> quotes = await theOneApi.getMovieQuotes(
+  Response<Quote> quotes = await lotrApi.getMovieQuotes(
     movieId: lastMovieId,
   );
   print(quotes.docs);

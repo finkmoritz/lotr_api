@@ -1,16 +1,16 @@
-import 'package:the_one_api/src/query/filter/impl/matches_regex.dart';
-import 'package:the_one_api/the_one_api.dart';
+import 'package:lotr_api/src/query/filter/impl/matches_regex.dart';
+import 'package:lotr_api/lotr_api.dart';
 
 void main(List<String> args) async {
   if (args.isEmpty) {
     throw Exception('Expected API key as first argument, but received none.');
   }
 
-  var theOneApi = TheOneApi(
+  var lotrApi = LotrApi(
     apiKey: args.first,
   );
 
-  Response<Quote> quotes = await theOneApi.getQuotes(
+  Response<Quote> quotes = await lotrApi.getQuotes(
     sorting: QuoteSortings.byDialogAsc,
     pagination: Pagination(
       limit: 10,
@@ -22,7 +22,7 @@ void main(List<String> args) async {
   );
   print(quotes);
 
-  Quote? quote = await theOneApi.getQuote(
+  Quote? quote = await lotrApi.getQuote(
     id: quotes.docs.first.id,
   );
   print(quote);
