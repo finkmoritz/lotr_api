@@ -294,7 +294,6 @@ class LotrApi {
     filters.forEach((filter) {
       filter?.getQueries().forEach((query) => url += '${query}&');
     });
-    print(url);
 
     var response = await http.get(
       Uri.parse(url),
@@ -309,7 +308,8 @@ class LotrApi {
       );
     } else {
       throw Exception('''Received error from API!
-${response.statusCode} ${response.reasonPhrase}''');
+${response.statusCode} ${response.reasonPhrase}
+for request URL ${url}''');
     }
   }
 }
