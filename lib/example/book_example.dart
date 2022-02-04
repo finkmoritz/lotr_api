@@ -1,3 +1,4 @@
+import 'package:the_one_api/src/query/filter/impl/matches.dart';
 import 'package:the_one_api/the_one_api.dart';
 
 void main() async {
@@ -23,7 +24,7 @@ void main() async {
       offset: 0,
     ),
     sorting: BookSortings.byNameAsc,
-    idFilter: IdFilter()..notMatches = firstBookId,
+    idFilter: Matches(firstBookId),
   );
   print(booksExceptFirstOne);
 }

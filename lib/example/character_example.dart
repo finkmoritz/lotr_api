@@ -23,8 +23,8 @@ void main(List<String> args) async {
   print(quotes.docs);
 
   Response<Character> femaleHumans = await theOneApi.getCharacters(
-    genderFilter: GenderFilter()..matches = GenderFilter.female,
-    raceFilter: RaceFilter()..matches = 'Human',
+    genderFilter: Matches('Female'),
+    raceFilter: Matches('Human'),
   );
   print(femaleHumans);
 }

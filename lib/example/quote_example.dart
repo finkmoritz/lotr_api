@@ -1,3 +1,4 @@
+import 'package:the_one_api/src/query/filter/impl/matches_regex.dart';
 import 'package:the_one_api/the_one_api.dart';
 
 void main(List<String> args) async {
@@ -15,7 +16,7 @@ void main(List<String> args) async {
       limit: 10,
       offset: 2,
     ),
-    dialogFilter: DialogFilter()..matchesRegex = 'Frodo',
+    dialogFilter: MatchesRegex('Frodo'),
   );
   print(quotes);
 

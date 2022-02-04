@@ -7,32 +7,20 @@ export 'src/model/movie.dart' show Movie;
 export 'src/model/quote.dart' show Quote;
 export 'src/model/response.dart' show Response;
 
-export 'src/query/filter/academy_award_nominations_filter.dart'
-    show AcademyAwardNominationsFilter;
-export 'src/query/filter/academy_award_wins_filter.dart'
-    show AcademyAwardWinsFilter;
-export 'src/query/filter/birth_filter.dart' show BirthFilter;
-export 'src/query/filter/birth_filter.dart' show BirthFilter;
-export 'src/query/filter/box_office_revenue_in_millions_filter.dart'
-    show BoxOfficeRevenueInMillionsFilter;
-export 'src/query/filter/budget_in_millions_filter.dart'
-    show BudgetInMillionsFilter;
-export 'src/query/filter/chapter_name_filter.dart' show ChapterNameFilter;
-export 'src/query/filter/death_filter.dart' show DeathFilter;
-export 'src/query/filter/dialog_filter.dart' show DialogFilter;
-export 'src/query/filter/gender_filter.dart' show GenderFilter;
-export 'src/query/filter/hair_filter.dart' show HairFilter;
-export 'src/query/filter/height_filter.dart' show HeightFilter;
-export 'src/query/filter/id_filter.dart' show IdFilter;
-export 'src/query/filter/name_filter.dart' show NameFilter;
-export 'src/query/filter/race_filter.dart' show RaceFilter;
-export 'src/query/filter/realm_filter.dart' show RealmFilter;
-export 'src/query/filter/rotten_tomatoes_score_filter.dart'
-    show RottenTomatoesScoreFilter;
-export 'src/query/filter/runtime_in_minutes_filter.dart'
-    show RuntimeInMinutesFilter;
-export 'src/query/filter/spouse_filter.dart' show SpouseFilter;
-export 'src/query/filter/wiki_url_filter.dart' show WikiUrlFilter;
+export 'src/query/filter/impl/equals.dart' show Equals;
+export 'src/query/filter/impl/excludes.dart' show Excludes;
+export 'src/query/filter/impl/exists.dart' show Exists;
+export 'src/query/filter/impl/greater_than.dart' show GreaterThan;
+export 'src/query/filter/impl/greater_than_or_equals.dart'
+    show GreaterThanOrEquals;
+export 'src/query/filter/impl/includes.dart' show Includes;
+export 'src/query/filter/impl/less_than.dart' show LessThan;
+export 'src/query/filter/impl/less_than_or_equals.dart' show LessThanOrEquals;
+export 'src/query/filter/impl/matches.dart' show Matches;
+export 'src/query/filter/impl/not_equals.dart' show NotEquals;
+export 'src/query/filter/impl/not_exists.dart' show NotExists;
+export 'src/query/filter/impl/not_matches.dart' show NotMatches;
+export 'src/query/filter/impl/not_matches_regex.dart' show NotMatchesRegex;
 
 export 'src/query/pagination/pagination.dart' show Pagination;
 
