@@ -1,4 +1,4 @@
-# The One API
+# The Lord of the Rings API
 
 ```
   var theOneApi = TheOneApi(

@@ -1,4 +1,4 @@
-# The One API
+# The Lord of the Rings API
 
 This package leverages communication with [The One API](https://the-one-api.dev/), providing the user with data about
 *The Lord of the Rings* (books and movies).
