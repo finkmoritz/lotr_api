@@ -94,13 +94,33 @@ Response<Quote> quotes = await theOneApi.getQuotes(
 
 ## Filtering
 
-```
+You may also apply multiple filters for each attribute, e.g.:
 
 ```
+Response<Movie> response = await theOneApi.getMovies(
+  nameFilters: [
+    Exists(),
+  ],
+  budgetInMillionsFilters: [
+    GreaterThanOrEquals(100),
+    LessThan(250),
+  ],
+);
+```
+
+Available filters are:
+
+* `Matches` / `NotMatches`
+* `Includes` / `Excludes`
+* `Exists` / `NotExists`
+* `MatchesRegex` / `NotMatchesRegex`
+* `Equals` / `NotEquals`
+* `LessThan` / `GreaterThan`
+* `LessThanOrEquals` / `GreaterThanOrEquals`
 
 ## Examples
 
-Check the [lib/example](lib/example) folder for more examples.
+Check the [example](example) folder for more examples.
 
 ## Support
 

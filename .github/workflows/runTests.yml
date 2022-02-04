@@ -19,16 +19,16 @@ jobs:
         run: dart format --output=none --set-exit-if-changed .
 
       - name: Book example
-        run: dart lib/example/book_example.dart
+        run: dart example/book_example.dart
 
       - name: Chapter example
-        run: dart lib/example/chapter_example.dart ${{ secrets.API_KEY }}
+        run: dart example/chapter_example.dart ${{ secrets.API_KEY }}
 
       - name: Character example
-        run: dart lib/example/character_example.dart ${{ secrets.API_KEY }}
+        run: dart example/character_example.dart ${{ secrets.API_KEY }}
 
       - name: Movie example
-        run: dart lib/example/movie_example.dart ${{ secrets.API_KEY }}
+        run: dart example/movie_example.dart ${{ secrets.API_KEY }}
 
       - name: Quote example
-        run: dart lib/example/quote_example.dart ${{ secrets.API_KEY }}
+        run: dart example/quote_example.dart ${{ secrets.API_KEY }}
