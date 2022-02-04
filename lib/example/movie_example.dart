@@ -9,8 +9,13 @@ void main(List<String> args) async {
     apiKey: args.first,
   );
   Response<Movie> response = await theOneApi.getMovies(
-    nameFilter: Exists(),
-    budgetInMillionsFilter: GreaterThanOrEquals(99),
+    nameFilters: [
+      Exists(),
+    ],
+    budgetInMillionsFilters: [
+      GreaterThanOrEquals(100),
+      LessThan(250),
+    ],
     sorting: MovieSortings.byAcademyAwardWinsDesc,
   );
   print(response);

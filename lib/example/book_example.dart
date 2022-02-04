@@ -24,7 +24,9 @@ void main() async {
       offset: 0,
     ),
     sorting: BookSortings.byNameAsc,
-    idFilter: Matches(firstBookId),
+    idFilters: [
+      Matches(firstBookId),
+    ],
   );
   print(booksExceptFirstOne);
 }

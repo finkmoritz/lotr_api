@@ -16,7 +16,9 @@ void main(List<String> args) async {
       limit: 10,
       offset: 2,
     ),
-    dialogFilter: MatchesRegex('Frodo'),
+    dialogFilters: [
+      MatchesRegex('Frodo'),
+    ],
   );
   print(quotes);
 

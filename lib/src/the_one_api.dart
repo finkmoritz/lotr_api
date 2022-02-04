@@ -36,8 +36,8 @@ class TheOneApi {
   Future<Response<Book>> getBooks({
     Pagination? pagination,
     BookSorting? sorting,
-    Filter? idFilter,
-    Filter? nameFilter,
+    List<Filter?>? idFilters,
+    List<Filter?>? nameFilters,
   }) async {
     return _getResponse<Book>(
       mapping: (b) => Book.fromJson(b),
@@ -45,8 +45,8 @@ class TheOneApi {
       pagination: pagination,
       sorting: sorting,
       filters: [
-        AttributeFilter('_id', idFilter),
-        AttributeFilter('name', nameFilter),
+        ..._toAttributeFilters('_id', idFilters),
+        ..._toAttributeFilters('name', nameFilters),
       ],
     );
   }
@@ -55,7 +55,9 @@ class TheOneApi {
     required String id,
   }) async {
     Response<Book> books = await getBooks(
-      idFilter: Matches(id),
+      idFilters: [
+        Matches(id),
+      ],
     );
     return books.docs.isNotEmpty ? books.docs.first : null;
   }
@@ -64,8 +66,8 @@ class TheOneApi {
     required String bookId,
     Pagination? pagination,
     ChapterSorting? sorting,
-    Filter? idFilter,
-    Filter? chapterNameFilter,
+    List<Filter?>? idFilters,
+    List<Filter?>? chapterNameFilters,
   }) async {
     return _getResponse<Chapter>(
       mapping: (c) => Chapter.fromJson(c),
@@ -73,8 +75,8 @@ class TheOneApi {
       pagination: pagination,
       sorting: sorting,
       filters: [
-        AttributeFilter('_id', idFilter),
-        AttributeFilter('chapterName', idFilter),
+        ..._toAttributeFilters('_id', idFilters),
+        ..._toAttributeFilters('chapterName', chapterNameFilters),
       ],
     );
   }
@@ -82,14 +84,14 @@ class TheOneApi {
   Future<Response<Movie>> getMovies({
     Pagination? pagination,
     MovieSorting? sorting,
-    Filter? idFilter,
-    Filter? nameFilter,
-    Filter? runtimeInMinutesFilter,
-    Filter? budgetInMillionsFilter,
-    Filter? boxOfficeRevenueInMillionsFilter,
-    Filter? academyAwardNominationsFilter,
-    Filter? academyAwardWinsFilter,
-    Filter? rottenTomatoesScoreFilter,
+    List<Filter?>? idFilters,
+    List<Filter?>? nameFilters,
+    List<Filter?>? runtimeInMinutesFilters,
+    List<Filter?>? budgetInMillionsFilters,
+    List<Filter?>? boxOfficeRevenueInMillionsFilters,
+    List<Filter?>? academyAwardNominationsFilters,
+    List<Filter?>? academyAwardWinsFilters,
+    List<Filter?>? rottenTomatoesScoreFilters,
   }) async {
     return _getResponse<Movie>(
       mapping: (b) => Movie.fromJson(b),
@@ -97,14 +99,17 @@ class TheOneApi {
       pagination: pagination,
       sorting: sorting,
       filters: [
-        AttributeFilter('_id', idFilter),
-        AttributeFilter('name', idFilter),
-        AttributeFilter('runtimeInMinutesFilter', idFilter),
-        AttributeFilter('budgetInMillionsFilter', idFilter),
-        AttributeFilter('boxOfficeRevenueInMillionsFilter', idFilter),
-        AttributeFilter('academyAwardNominationsFilter', idFilter),
-        AttributeFilter('academyAwardWinsFilter', idFilter),
-        AttributeFilter('rottenTomatoesScoreFilter', idFilter),
+        ..._toAttributeFilters('_id', idFilters),
+        ..._toAttributeFilters('name', nameFilters),
+        ..._toAttributeFilters('runtimeInMinutes', runtimeInMinutesFilters),
+        ..._toAttributeFilters('budgetInMillions', budgetInMillionsFilters),
+        ..._toAttributeFilters(
+            'boxOfficeRevenueInMillions', boxOfficeRevenueInMillionsFilters),
+        ..._toAttributeFilters(
+            'academyAwardNominations', academyAwardNominationsFilters),
+        ..._toAttributeFilters('academyAwardWins', academyAwardWinsFilters),
+        ..._toAttributeFilters(
+            'rottenTomatoesScore', rottenTomatoesScoreFilters),
       ],
     );
   }
@@ -113,7 +118,9 @@ class TheOneApi {
     required String id,
   }) async {
     Response<Movie> movies = await getMovies(
-      idFilter: Matches(id),
+      idFilters: [
+        Matches(id),
+      ],
     );
     return movies.docs.isNotEmpty ? movies.docs.first : null;
   }
@@ -122,8 +129,8 @@ class TheOneApi {
     required String movieId,
     Pagination? pagination,
     QuoteSorting? sorting,
-    Filter? idFilter,
-    Filter? dialogFilter,
+    List<Filter?>? idFilters,
+    List<Filter?>? dialogFilters,
   }) async {
     return _getResponse<Quote>(
       mapping: (c) => Quote.fromJson(c),
@@ -131,8 +138,8 @@ class TheOneApi {
       pagination: pagination,
       sorting: sorting,
       filters: [
-        AttributeFilter('_id', idFilter),
-        AttributeFilter('dialogFilter', idFilter),
+        ..._toAttributeFilters('_id', idFilters),
+        ..._toAttributeFilters('dialog', dialogFilters),
       ],
     );
   }
@@ -140,17 +147,17 @@ class TheOneApi {
   Future<Response<Character>> getCharacters({
     Pagination? pagination,
     CharacterSorting? sorting,
-    Filter? idFilter,
-    Filter? nameFilter,
-    Filter? birthFilter,
-    Filter? deathFilter,
-    Filter? hairFilter,
-    Filter? genderFilter,
-    Filter? heightFilter,
-    Filter? realmFilter,
-    Filter? spouseFilter,
-    Filter? raceFilter,
-    Filter? wikiUrlFilter,
+    List<Filter?>? idFilters,
+    List<Filter?>? nameFilters,
+    List<Filter?>? birthFilters,
+    List<Filter?>? deathFilters,
+    List<Filter?>? hairFilters,
+    List<Filter?>? genderFilters,
+    List<Filter?>? heightFilters,
+    List<Filter?>? realmFilters,
+    List<Filter?>? spouseFilters,
+    List<Filter?>? raceFilters,
+    List<Filter?>? wikiUrlFilters,
   }) async {
     return _getResponse<Character>(
       mapping: (b) => Character.fromJson(b),
@@ -158,17 +165,17 @@ class TheOneApi {
       pagination: pagination,
       sorting: sorting,
       filters: [
-        AttributeFilter('_id', idFilter),
-        AttributeFilter('nameFilter', idFilter),
-        AttributeFilter('birthFilter', idFilter),
-        AttributeFilter('deathFilter', idFilter),
-        AttributeFilter('hairFilter', idFilter),
-        AttributeFilter('genderFilter', idFilter),
-        AttributeFilter('heightFilter', idFilter),
-        AttributeFilter('realmFilter', idFilter),
-        AttributeFilter('spouseFilter', idFilter),
-        AttributeFilter('raceFilter', idFilter),
-        AttributeFilter('wikiUrlFilter', idFilter),
+        ..._toAttributeFilters('_id', idFilters),
+        ..._toAttributeFilters('name', nameFilters),
+        ..._toAttributeFilters('birth', birthFilters),
+        ..._toAttributeFilters('death', deathFilters),
+        ..._toAttributeFilters('hair', hairFilters),
+        ..._toAttributeFilters('gender', genderFilters),
+        ..._toAttributeFilters('height', heightFilters),
+        ..._toAttributeFilters('realm', realmFilters),
+        ..._toAttributeFilters('spouse', spouseFilters),
+        ..._toAttributeFilters('race', raceFilters),
+        ..._toAttributeFilters('wikiUrl', wikiUrlFilters),
       ],
     );
   }
@@ -177,7 +184,9 @@ class TheOneApi {
     required String id,
   }) async {
     Response<Character> characters = await getCharacters(
-      idFilter: Matches(id),
+      idFilters: [
+        Matches(id),
+      ],
     );
     return characters.docs.isNotEmpty ? characters.docs.first : null;
   }
@@ -186,8 +195,8 @@ class TheOneApi {
     required String characterId,
     Pagination? pagination,
     QuoteSorting? sorting,
-    Filter? idFilter,
-    Filter? dialogFilter,
+    List<Filter?>? idFilters,
+    List<Filter?>? dialogFilters,
   }) async {
     return _getResponse<Quote>(
       mapping: (c) => Quote.fromJson(c),
@@ -195,8 +204,8 @@ class TheOneApi {
       pagination: pagination,
       sorting: sorting,
       filters: [
-        AttributeFilter('_id', idFilter),
-        AttributeFilter('dialogFilter', idFilter),
+        ..._toAttributeFilters('_id', idFilters),
+        ..._toAttributeFilters('dialog', dialogFilters),
       ],
     );
   }
@@ -204,8 +213,8 @@ class TheOneApi {
   Future<Response<Quote>> getQuotes({
     Pagination? pagination,
     QuoteSorting? sorting,
-    Filter? idFilter,
-    Filter? dialogFilter,
+    List<Filter?>? idFilters,
+    List<Filter?>? dialogFilters,
   }) async {
     return _getResponse<Quote>(
       mapping: (c) => Quote.fromJson(c),
@@ -213,8 +222,8 @@ class TheOneApi {
       pagination: pagination,
       sorting: sorting,
       filters: [
-        AttributeFilter('_id', idFilter),
-        AttributeFilter('dialogFilter', idFilter),
+        ..._toAttributeFilters('_id', idFilters),
+        ..._toAttributeFilters('dialog', dialogFilters),
       ],
     );
   }
@@ -223,7 +232,9 @@ class TheOneApi {
     required String id,
   }) async {
     Response<Quote> quotes = await getQuotes(
-      idFilter: Matches(id),
+      idFilters: [
+        Matches(id),
+      ],
     );
     return quotes.docs.isNotEmpty ? quotes.docs.first : null;
   }
@@ -231,8 +242,8 @@ class TheOneApi {
   Future<Response<Chapter>> getChapters({
     Pagination? pagination,
     ChapterSorting? sorting,
-    Filter? idFilter,
-    Filter? chapterNameFilter,
+    List<Filter?>? idFilters,
+    List<Filter?>? chapterNameFilters,
   }) async {
     return _getResponse<Chapter>(
       mapping: (c) => Chapter.fromJson(c),
@@ -240,8 +251,8 @@ class TheOneApi {
       pagination: pagination,
       sorting: sorting,
       filters: [
-        AttributeFilter('_id', idFilter),
-        AttributeFilter('chapterNameFilter', idFilter),
+        ..._toAttributeFilters('_id', idFilters),
+        ..._toAttributeFilters('chapterName', chapterNameFilters),
       ],
     );
   }
@@ -250,9 +261,18 @@ class TheOneApi {
     required String id,
   }) async {
     Response<Chapter> chapters = await getChapters(
-      idFilter: Matches(id),
+      idFilters: [
+        Matches(id),
+      ],
     );
     return chapters.docs.isNotEmpty ? chapters.docs.first : null;
+  }
+
+  List<AttributeFilter?> _toAttributeFilters(
+      String attribute, List<Filter?>? filters) {
+    List<AttributeFilter?>? attributeFilters =
+        filters?.map((f) => AttributeFilter(attribute, f)).toList();
+    return attributeFilters == null ? [] : attributeFilters;
   }
 
   Future<Response<T>> _getResponse<T>({
@@ -274,6 +294,7 @@ class TheOneApi {
     filters.forEach((filter) {
       filter?.getQueries().forEach((query) => url += '${query}&');
     });
+    print(url);
 
     var response = await http.get(
       Uri.parse(url),
@@ -287,7 +308,8 @@ class TheOneApi {
         mapping: mapping,
       );
     } else {
-      throw Exception('Received error code ${response.statusCode} from API!');
+      throw Exception('''Received error from API!
+${response.statusCode} ${response.reasonPhrase}''');
     }
   }
 }
