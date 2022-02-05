@@ -1,5 +1,3 @@
-export 'src/config/api_version.dart' show ApiVersion;
-
 export 'src/model/book.dart' show Book;
 export 'src/model/chapter.dart' show Chapter;
 export 'src/model/character.dart' show Character;
@@ -17,6 +15,7 @@ export 'src/query/filter/impl/includes.dart' show Includes;
 export 'src/query/filter/impl/less_than.dart' show LessThan;
 export 'src/query/filter/impl/less_than_or_equals.dart' show LessThanOrEquals;
 export 'src/query/filter/impl/matches.dart' show Matches;
+export 'src/query/filter/impl/matches_regex.dart' show MatchesRegex;
 export 'src/query/filter/impl/not_equals.dart' show NotEquals;
 export 'src/query/filter/impl/not_exists.dart' show NotExists;
 export 'src/query/filter/impl/not_matches.dart' show NotMatches;

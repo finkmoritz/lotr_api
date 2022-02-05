@@ -9,8 +9,8 @@ import 'package:lotr_api/src/query/sorting/character/character_sorting.dart';
 import 'package:lotr_api/src/query/sorting/movie/movie_sorting.dart';
 import 'package:lotr_api/src/query/sorting/quote/quote_sorting.dart';
 import 'package:lotr_api/src/query/sorting/sorting.dart';
+import 'package:lotr_api/src/util/utils.dart';
 
-import 'config/api_version.dart';
 import 'model/book.dart';
 import 'model/chapter.dart';
 import 'model/character.dart';
@@ -22,14 +22,16 @@ import 'query/pagination/pagination.dart';
 
 class LotrApi {
   final String? apiKey;
-  final ApiVersion apiVersion;
 
   late final String _baseUrl;
 
   LotrApi({
     this.apiKey,
-    this.apiVersion = ApiVersion.v2,
   }) {
+    if (apiKey == null) {
+      Utils.printWarning(
+          'No API key provided. Only open endpoints will be available.');
+    }
     _baseUrl = "https://the-one-api.dev/v2";
   }
 
