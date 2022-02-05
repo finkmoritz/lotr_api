@@ -1,7 +1,19 @@
 # The Lord of the Rings API
 
-This package leverages communication with [The One API](https://the-one-api.dev/), providing the user with data about
-*The Lord of the Rings* (books and movies).
+This package facilitates communication with [The One API](https://the-one-api.dev/), providing the user with data about
+*The Lord of the Rings*:
+
+* Books
+* Chapters
+* Characters
+* Movies
+* Quotes
+
+The respective requests may be further specified by providing:
+
+* Pagination
+* Sorting
+* Filters
 
 ## Prerequisites
 
