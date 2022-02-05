@@ -26,12 +26,17 @@ In order to retrieve data about all books:
 
 ```
 Response<Book> response = await lotrApi.getBooks();
+```
+
+The actual list of items is always stored in the ```docs``` attribute:
+
+```
 List<Book> books = response.docs;
 ```
 
 *The Response holds additional information such as the total number of items.*
 
-You can also get a specific book by providing its ID:
+You can also directly get a specific book by providing its ID:
 
 ```
 String firstBookId = books.first.id;
