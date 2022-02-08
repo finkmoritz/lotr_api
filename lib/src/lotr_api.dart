@@ -21,10 +21,19 @@ import 'query/filter/filter.dart';
 import 'query/pagination/pagination.dart';
 
 class LotrApi {
+  /// This API access key is used to authenticate the user when making a
+  /// request to the-one-api.
+  /// Needs not be provided for the open '/book' endpoint.
   final String? apiKey;
 
+  /// Base URL for any request including the version number.
   late final String _baseUrl;
 
+  /// Main entry point to the API. This class provides all API methods
+  /// for this package.
+  /// The [apiKey] is the API access key for the-one-api which can be requested
+  /// via https://the-one-api.dev/sign-up, but needs not be provided if you only
+  /// want to request books.
   LotrApi({
     this.apiKey,
   }) {
@@ -35,6 +44,7 @@ class LotrApi {
     _baseUrl = "https://the-one-api.dev/v2";
   }
 
+  /// Returns [Book]s based on the given [pagination], [sorting] and filters.
   Future<Response<Book>> getBooks({
     Pagination? pagination,
     BookSorting? sorting,
@@ -53,6 +63,8 @@ class LotrApi {
     );
   }
 
+  /// Returns the [Book] with the given [id] or [null] if this [id] does not
+  /// exist.
   Future<Book?> getBook({
     required String id,
   }) async {
@@ -64,6 +76,8 @@ class LotrApi {
     return books.docs.isNotEmpty ? books.docs.first : null;
   }
 
+  /// Returns [Chapter]s of a particular [Book] based on the given [pagination],
+  /// [sorting] and filters.
   Future<Response<Chapter>> getBookChapters({
     required String bookId,
     Pagination? pagination,
@@ -83,6 +97,7 @@ class LotrApi {
     );
   }
 
+  /// Returns [Movie]s based on the given [pagination], [sorting] and filters.
   Future<Response<Movie>> getMovies({
     Pagination? pagination,
     MovieSorting? sorting,
@@ -116,6 +131,8 @@ class LotrApi {
     );
   }
 
+  /// Returns the [Movie] with the given [id] or [null] if this [id] does not
+  /// exist.
   Future<Movie?> getMovie({
     required String id,
   }) async {
@@ -127,6 +144,8 @@ class LotrApi {
     return movies.docs.isNotEmpty ? movies.docs.first : null;
   }
 
+  /// Returns [Quote]s of a particular [Movie] based on the given [pagination],
+  /// [sorting] and filters.
   Future<Response<Quote>> getMovieQuotes({
     required String movieId,
     Pagination? pagination,
@@ -146,6 +165,8 @@ class LotrApi {
     );
   }
 
+  /// Returns [Character]s based on the given [pagination], [sorting] and
+  /// filters.
   Future<Response<Character>> getCharacters({
     Pagination? pagination,
     CharacterSorting? sorting,
@@ -182,6 +203,8 @@ class LotrApi {
     );
   }
 
+  /// Returns the [Character] with the given [id] or [null] if this [id] does
+  /// not exist.
   Future<Character?> getCharacter({
     required String id,
   }) async {
@@ -193,6 +216,8 @@ class LotrApi {
     return characters.docs.isNotEmpty ? characters.docs.first : null;
   }
 
+  /// Returns [Quote]s of a particular [Character] based on the given
+  /// [pagination], [sorting] and filters.
   Future<Response<Quote>> getCharacterQuotes({
     required String characterId,
     Pagination? pagination,
@@ -212,6 +237,7 @@ class LotrApi {
     );
   }
 
+  /// Returns [Quote]s based on the given [pagination], [sorting] and filters.
   Future<Response<Quote>> getQuotes({
     Pagination? pagination,
     QuoteSorting? sorting,
@@ -230,6 +256,8 @@ class LotrApi {
     );
   }
 
+  /// Returns the [Quote] with the given [id] or [null] if this [id] does not
+  /// exist.
   Future<Quote?> getQuote({
     required String id,
   }) async {
@@ -241,6 +269,7 @@ class LotrApi {
     return quotes.docs.isNotEmpty ? quotes.docs.first : null;
   }
 
+  /// Returns [Chapter]s based on the given [pagination], [sorting] and filters.
   Future<Response<Chapter>> getChapters({
     Pagination? pagination,
     ChapterSorting? sorting,
@@ -259,6 +288,8 @@ class LotrApi {
     );
   }
 
+  /// Returns the [Chapter] with the given [id] or [null] if this [id] does not
+  /// exist.
   Future<Chapter?> getChapter({
     required String id,
   }) async {
