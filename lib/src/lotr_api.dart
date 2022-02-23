@@ -22,7 +22,6 @@ import 'query/pagination/pagination.dart';
 
 /// This class provides the main entry point for the API.
 class LotrApi {
-
   /// This API access key is used to authenticate the user when making a
   /// request to the-one-api.
   /// Needs not be provided for the open '/book' endpoint.
