@@ -1,4 +1,3 @@
-import 'package:lotr_api/src/query/filter/impl/matches_regex.dart';
 import 'package:lotr_api/lotr_api.dart';
 
 void main(List<String> args) async {
