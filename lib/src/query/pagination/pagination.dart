@@ -1,15 +1,18 @@
 import 'package:lotr_api/src/query/query.dart';
 
+/// Pagination class to handle pagination in API queries
 class Pagination implements Query {
+  /// The maximum number of items to return
   final int? limit;
+
+  /// The page number to return
   final int? page;
+
+  /// The offset to start returning items from
   final int? offset;
 
-  Pagination({
-    this.limit,
-    this.page,
-    this.offset,
-  });
+  /// Constructor for Pagination
+  Pagination({this.limit, this.page, this.offset});
 
   @override
   List<String> getQueries() {

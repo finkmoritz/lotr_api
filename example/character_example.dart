@@ -5,16 +5,12 @@ void main(List<String> args) async {
     throw Exception('Expected API key as first argument, but received none.');
   }
 
-  var lotrApi = LotrApi(
-    apiKey: args.first,
-  );
+  var lotrApi = LotrApi(apiKey: args.first);
   Response<Character> response = await lotrApi.getCharacters();
   print(response);
 
   String lastCharacterId = response.docs.last.id;
-  Character? lastCharacter = await lotrApi.getCharacter(
-    id: lastCharacterId,
-  );
+  Character? lastCharacter = await lotrApi.getCharacter(id: lastCharacterId);
   print(lastCharacter);
 
   Response<Quote> quotes = await lotrApi.getCharacterQuotes(
@@ -23,12 +19,8 @@ void main(List<String> args) async {
   print(quotes.docs);
 
   Response<Character> femaleHumans = await lotrApi.getCharacters(
-    genderFilters: [
-      Matches('Female'),
-    ],
-    raceFilters: [
-      Matches('Human'),
-    ],
+    genderFilters: [Matches('Female')],
+    raceFilters: [Matches('Human')],
   );
   print(femaleHumans);
 }

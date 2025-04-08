@@ -24,7 +24,7 @@ https://the-one-api.dev/sign-up
 
 Before making any requests create an instance of ```LotrApi``` using your API access key:
 
-```
+```dart
 var lotrApi = LotrApi(
   apiKey: 'INSERT_YOUR_API_ACCESS_KEY_HERE',
 );
@@ -36,13 +36,13 @@ var lotrApi = LotrApi(
 
 In order to retrieve data about all books:
 
-```
+```dart
 Response<Book> response = await lotrApi.getBooks();
 ```
 
 The actual list of items is always stored in the ```docs``` attribute:
 
-```
+```dart
 List<Book> books = response.docs;
 ```
 
@@ -50,7 +50,7 @@ List<Book> books = response.docs;
 
 You can also directly get a specific book by providing its ID:
 
-```
+```dart
 String firstBookId = books.first.id;
 Book? firstBook = await lotrApi.getBook(
   id: firstBookId,
@@ -59,25 +59,25 @@ Book? firstBook = await lotrApi.getBook(
 
 ### Chapter
 
-```
+```dart
 Response<Chapter> chapters = await lotrApi.getChapters();
 ```
 
 ### Character
 
-```
+```dart
 Response<Character> response = await lotrApi.getCharacters();
 ```
 
 ### Movie
 
-```
+```dart
 Response<Movie> response = await lotrApi.getMovies();
 ```
 
 ### Quote
 
-```
+```dart
 Response<Quote> quotes = await lotrApi.getQuotes();
 
 Response<Quote> quotes = await lotrApi.getCharacterQuotes(
@@ -91,7 +91,7 @@ Response<Quote> quotes = await lotrApi.getMovieQuotes(
 
 ## Pagination
 
-```
+```dart
 Response<Quote> quotes = await lotrApi.getQuotes(
   pagination: Pagination(
     limit: 10,
@@ -103,7 +103,7 @@ Response<Quote> quotes = await lotrApi.getQuotes(
 
 ## Sorting
 
-```
+```dart
 Response<Quote> quotes = await lotrApi.getQuotes(
   sorting: QuoteSortings.byDialogAsc,
 );
@@ -113,7 +113,7 @@ Response<Quote> quotes = await lotrApi.getQuotes(
 
 You may also apply multiple filters for each attribute, e.g.:
 
-```
+```dart
 Response<Movie> response = await lotrApi.getMovies(
   nameFilters: [
     Exists(),
@@ -137,7 +137,8 @@ Available filters are:
 
 ## Examples
 
-Check the [example](example) folder for more examples.
+Check the [example folder](example) or even the [Example Flutter App](https://github.com/finkmoritz/the_one_app)
+for more examples.
 
 ## Support
 

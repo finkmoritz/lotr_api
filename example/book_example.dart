@@ -6,9 +6,7 @@ void main() async {
   print(response);
 
   String firstBookId = response.docs.first.id;
-  Book? firstBook = await lotrApi.getBook(
-    id: firstBookId,
-  );
+  Book? firstBook = await lotrApi.getBook(id: firstBookId);
   print(firstBook);
 
   Response<Chapter> chapters = await lotrApi.getBookChapters(
@@ -17,15 +15,9 @@ void main() async {
   print(chapters.docs);
 
   Response<Book> booksExceptFirstOne = await lotrApi.getBooks(
-    pagination: Pagination(
-      limit: 2,
-      page: 1,
-      offset: 0,
-    ),
+    pagination: Pagination(limit: 2, page: 1, offset: 0),
     sorting: BookSortings.byNameAsc,
-    idFilters: [
-      Matches(firstBookId),
-    ],
+    idFilters: [Matches(firstBookId)],
   );
   print(booksExceptFirstOne);
 }

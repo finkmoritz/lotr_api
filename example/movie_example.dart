@@ -5,29 +5,18 @@ void main(List<String> args) async {
     throw Exception('Expected API key as first argument, but received none.');
   }
 
-  var lotrApi = LotrApi(
-    apiKey: args.first,
-  );
+  var lotrApi = LotrApi(apiKey: args.first);
   Response<Movie> response = await lotrApi.getMovies(
-    nameFilters: [
-      Exists(),
-    ],
-    budgetInMillionsFilters: [
-      GreaterThanOrEquals(100),
-      LessThan(250),
-    ],
+    nameFilters: [Exists()],
+    budgetInMillionsFilters: [GreaterThanOrEquals(100), LessThan(250)],
     sorting: MovieSortings.byAcademyAwardWinsDesc,
   );
   print(response);
 
   String lastMovieId = response.docs.last.id;
-  Movie? lastMovie = await lotrApi.getMovie(
-    id: lastMovieId,
-  );
+  Movie? lastMovie = await lotrApi.getMovie(id: lastMovieId);
   print(lastMovie);
 
-  Response<Quote> quotes = await lotrApi.getMovieQuotes(
-    movieId: lastMovieId,
-  );
+  Response<Quote> quotes = await lotrApi.getMovieQuotes(movieId: lastMovieId);
   print(quotes.docs);
 }

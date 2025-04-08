@@ -5,24 +5,15 @@ void main(List<String> args) async {
     throw Exception('Expected API key as first argument, but received none.');
   }
 
-  var lotrApi = LotrApi(
-    apiKey: args.first,
-  );
+  var lotrApi = LotrApi(apiKey: args.first);
 
   Response<Quote> quotes = await lotrApi.getQuotes(
     sorting: QuoteSortings.byDialogAsc,
-    pagination: Pagination(
-      limit: 10,
-      offset: 2,
-    ),
-    dialogFilters: [
-      MatchesRegex('Frodo'),
-    ],
+    pagination: Pagination(limit: 10, offset: 2),
+    dialogFilters: [MatchesRegex('Frodo')],
   );
   print(quotes);
 
-  Quote? quote = await lotrApi.getQuote(
-    id: quotes.docs.first.id,
-  );
+  Quote? quote = await lotrApi.getQuote(id: quotes.docs.first.id);
   print(quote);
 }

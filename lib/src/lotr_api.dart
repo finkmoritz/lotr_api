@@ -20,6 +20,7 @@ import 'model/response.dart';
 import 'query/filter/filter.dart';
 import 'query/pagination/pagination.dart';
 
+/// This class provides the main entry point for the API.
 class LotrApi {
   /// This API access key is used to authenticate the user when making a
   /// request to the-one-api.
@@ -34,12 +35,11 @@ class LotrApi {
   /// The [apiKey] is the API access key for the-one-api which can be requested
   /// via https://the-one-api.dev/sign-up, but needs not be provided if you only
   /// want to request books.
-  LotrApi({
-    this.apiKey,
-  }) {
+  LotrApi({this.apiKey}) {
     if (apiKey == null) {
       Utils.printWarning(
-          'No API key provided. Only open endpoints will be available.');
+        'No API key provided. Only open endpoints will be available.',
+      );
     }
     _baseUrl = "https://the-one-api.dev/v2";
   }
@@ -65,14 +65,8 @@ class LotrApi {
 
   /// Returns the [Book] with the given [id] or [null] if this [id] does not
   /// exist.
-  Future<Book?> getBook({
-    required String id,
-  }) async {
-    Response<Book> books = await getBooks(
-      idFilters: [
-        Matches(id),
-      ],
-    );
+  Future<Book?> getBook({required String id}) async {
+    Response<Book> books = await getBooks(idFilters: [Matches(id)]);
     return books.docs.isNotEmpty ? books.docs.first : null;
   }
 
@@ -121,26 +115,26 @@ class LotrApi {
         ..._toAttributeFilters('runtimeInMinutes', runtimeInMinutesFilters),
         ..._toAttributeFilters('budgetInMillions', budgetInMillionsFilters),
         ..._toAttributeFilters(
-            'boxOfficeRevenueInMillions', boxOfficeRevenueInMillionsFilters),
+          'boxOfficeRevenueInMillions',
+          boxOfficeRevenueInMillionsFilters,
+        ),
         ..._toAttributeFilters(
-            'academyAwardNominations', academyAwardNominationsFilters),
+          'academyAwardNominations',
+          academyAwardNominationsFilters,
+        ),
         ..._toAttributeFilters('academyAwardWins', academyAwardWinsFilters),
         ..._toAttributeFilters(
-            'rottenTomatoesScore', rottenTomatoesScoreFilters),
+          'rottenTomatoesScore',
+          rottenTomatoesScoreFilters,
+        ),
       ],
     );
   }
 
   /// Returns the [Movie] with the given [id] or [null] if this [id] does not
   /// exist.
-  Future<Movie?> getMovie({
-    required String id,
-  }) async {
-    Response<Movie> movies = await getMovies(
-      idFilters: [
-        Matches(id),
-      ],
-    );
+  Future<Movie?> getMovie({required String id}) async {
+    Response<Movie> movies = await getMovies(idFilters: [Matches(id)]);
     return movies.docs.isNotEmpty ? movies.docs.first : null;
   }
 
@@ -205,13 +199,9 @@ class LotrApi {
 
   /// Returns the [Character] with the given [id] or [null] if this [id] does
   /// not exist.
-  Future<Character?> getCharacter({
-    required String id,
-  }) async {
+  Future<Character?> getCharacter({required String id}) async {
     Response<Character> characters = await getCharacters(
-      idFilters: [
-        Matches(id),
-      ],
+      idFilters: [Matches(id)],
     );
     return characters.docs.isNotEmpty ? characters.docs.first : null;
   }
@@ -258,14 +248,8 @@ class LotrApi {
 
   /// Returns the [Quote] with the given [id] or [null] if this [id] does not
   /// exist.
-  Future<Quote?> getQuote({
-    required String id,
-  }) async {
-    Response<Quote> quotes = await getQuotes(
-      idFilters: [
-        Matches(id),
-      ],
-    );
+  Future<Quote?> getQuote({required String id}) async {
+    Response<Quote> quotes = await getQuotes(idFilters: [Matches(id)]);
     return quotes.docs.isNotEmpty ? quotes.docs.first : null;
   }
 
@@ -290,19 +274,15 @@ class LotrApi {
 
   /// Returns the [Chapter] with the given [id] or [null] if this [id] does not
   /// exist.
-  Future<Chapter?> getChapter({
-    required String id,
-  }) async {
-    Response<Chapter> chapters = await getChapters(
-      idFilters: [
-        Matches(id),
-      ],
-    );
+  Future<Chapter?> getChapter({required String id}) async {
+    Response<Chapter> chapters = await getChapters(idFilters: [Matches(id)]);
     return chapters.docs.isNotEmpty ? chapters.docs.first : null;
   }
 
   List<AttributeFilter?> _toAttributeFilters(
-      String attribute, List<Filter?>? filters) {
+    String attribute,
+    List<Filter?>? filters,
+  ) {
     List<AttributeFilter?>? attributeFilters =
         filters?.map((f) => AttributeFilter(attribute, f)).toList();
     return attributeFilters == null ? [] : attributeFilters;
@@ -328,17 +308,11 @@ class LotrApi {
       filter?.getQueries().forEach((query) => url += '${query}&');
     });
 
-    var response = await http.get(
-      Uri.parse(url),
-      headers: headers,
-    );
+    var response = await http.get(Uri.parse(url), headers: headers);
 
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
-      return Response.fromJson(
-        json: json,
-        mapping: mapping,
-      );
+      return Response.fromJson(json: json, mapping: mapping);
     } else {
       throw Exception('''Received error from API!
 ${response.statusCode} ${response.reasonPhrase}
