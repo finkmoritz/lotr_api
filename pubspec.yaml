@@ -1,5 +1,5 @@
 name: lotr_api
-version: 0.0.2
+version: 1.0.0
 description: API that accesses data on quotes, characters, books, etc. from the Tolkien universe.
 homepage: https://github.com/finkmoritz/lotr_api
 repository: https://github.com/finkmoritz/lotr_api
@@ -7,7 +7,11 @@ issue_tracker: https://github.com/finkmoritz/lotr_api/issues
 documentation: https://github.com/finkmoritz/lotr_api/blob/master/README.md
 
 environment:
-  sdk: '>=2.12.3 <3.0.0'
+  sdk: ^3.7.2
+  flutter: '>=3.3.0'
 
 dependencies:
-  http: ^0.13.3
+  flutter:
+    sdk: flutter
+
+  http: ^1.3.0

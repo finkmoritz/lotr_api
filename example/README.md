@@ -1,6 +1,6 @@
 # The Lord of the Rings API
 
-```
+```dart
 import 'package:lotr_api/lotr_api.dart';
 
 void main() async {
