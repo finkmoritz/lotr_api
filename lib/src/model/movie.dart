@@ -45,8 +45,9 @@ class Movie {
       name: json['name'],
       runtimeInMinutes: json['runtimeInMinutes'],
       budgetInMillions: json['budgetInMillions'],
-      boxOfficeRevenueInMillions:
-          Utils.toDouble(json['boxOfficeRevenueInMillions']),
+      boxOfficeRevenueInMillions: Utils.toDouble(
+        json['boxOfficeRevenueInMillions'],
+      ),
       academyAwardNominations: json['academyAwardNominations'],
       academyAwardWins: json['academyAwardWins'],
       rottenTomatoesScore: Utils.toDouble(json['rottenTomatoesScore']),

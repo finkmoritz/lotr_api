@@ -10,16 +10,11 @@ class Sorting implements Query {
   final SortingDirection direction;
 
   /// Constructor for Sorting
-  Sorting({
-    required this.attribute,
-    required this.direction,
-  });
+  Sorting({required this.attribute, required this.direction});
 
   @override
   List<String> getQueries() {
     String dir = direction == SortingDirection.asc ? 'asc' : 'desc';
-    return [
-      'sort=${attribute}:${dir}',
-    ];
+    return ['sort=${attribute}:${dir}'];
   }
 }

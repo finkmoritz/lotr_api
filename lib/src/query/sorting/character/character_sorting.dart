@@ -7,8 +7,5 @@ class CharacterSorting extends Sorting {
   CharacterSorting({
     required String attribute,
     required SortingDirection direction,
-  }) : super(
-          attribute: attribute,
-          direction: direction,
-        );
+  }) : super(attribute: attribute, direction: direction);
 }

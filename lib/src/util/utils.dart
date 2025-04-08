@@ -1,6 +1,5 @@
 /// Utility functions for the LOTR API package
 class Utils {
-
   /// Converts a dynamic value to a string. If the value is null, it returns an empty string.
   static String? toNullString(dynamic value) {
     if (value == null) {

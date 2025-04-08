@@ -1,6 +1,5 @@
 /// Response class to handle API responses
 class Response<T> {
-
   /// The list of documents returned by the API
   final List<T> docs;
 

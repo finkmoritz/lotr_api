@@ -10,17 +10,10 @@ class AttributeFilter implements Query {
   final Filter? filter;
 
   /// Constructor for AttributeFilter
-  AttributeFilter(
-    this.attribute,
-    this.filter,
-  );
+  AttributeFilter(this.attribute, this.filter);
 
   @override
   List<String> getQueries() {
-    return filter == null
-        ? []
-        : [
-            filter!.buildExpression(attribute),
-          ];
+    return filter == null ? [] : [filter!.buildExpression(attribute)];
   }
 }

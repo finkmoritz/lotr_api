@@ -12,11 +12,7 @@ class Pagination implements Query {
   final int? offset;
 
   /// Constructor for Pagination
-  Pagination({
-    this.limit,
-    this.page,
-    this.offset,
-  });
+  Pagination({this.limit, this.page, this.offset});
 
   @override
   List<String> getQueries() {
