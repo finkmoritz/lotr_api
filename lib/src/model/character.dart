@@ -1,18 +1,41 @@
 import 'package:lotr_api/src/util/utils.dart';
 
+/// Character model
 class Character {
+  /// Unique identifier for the character
   final String id;
+
+  /// Name of the character
   final String name;
+
+  /// Date of birth of the character
   final String? birth;
+
+  /// Date of death of the character
   final String? death;
+
+  /// Description of the character's hair
   final String? hair;
+
+  /// Gender of the character
   final String? gender;
+
+  /// Height of the character
   final String? height;
+
+  /// Realm of the character
   final String? realm;
+
+  /// Spouse of the character
   final String? spouse;
+
+  /// Race of the character
   final String? race;
+
+  /// URL to the character's wiki page
   final String? wikiUrl;
 
+  /// Default constructor for the Character class
   Character({
     required this.id,
     required this.name,
@@ -27,6 +50,7 @@ class Character {
     required this.wikiUrl,
   });
 
+  /// Factory constructor to create a Character instance from JSON
   factory Character.fromJson(Map<String, dynamic> json) {
     return Character(
       id: json['_id'],
