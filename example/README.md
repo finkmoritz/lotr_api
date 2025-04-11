@@ -12,7 +12,8 @@ void main() async {
     pagination: Pagination(
       limit: 10,
     ),
-    sorting: QuoteSortings.byIdAsc,
+    // https://github.com/gitfrosh/lotr-api/issues/188
+    // sorting: QuoteSortings.byIdAsc,
     idFilters: [
       Exists(),
     ],

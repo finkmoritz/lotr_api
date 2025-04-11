@@ -8,7 +8,8 @@ void main(List<String> args) async {
   var lotrApi = LotrApi(apiKey: args.first);
 
   Response<Chapter> chapters = await lotrApi.getChapters(
-    sorting: ChapterSortings.byChapterNameAsc,
+    // https://github.com/gitfrosh/lotr-api/issues/188
+    // sorting: ChapterSortings.byChapterNameAsc,
   );
   print(chapters);
 

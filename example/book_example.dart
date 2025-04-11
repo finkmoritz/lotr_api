@@ -16,7 +16,8 @@ void main() async {
 
   Response<Book> booksExceptFirstOne = await lotrApi.getBooks(
     pagination: Pagination(limit: 2, page: 1, offset: 1),
-    sorting: BookSortings.byNameAsc,
+    // https://github.com/gitfrosh/lotr-api/issues/188
+    // sorting: BookSortings.byNameAsc,
     idFilters: [NotMatches(firstBookId)],
   );
   print(booksExceptFirstOne);
