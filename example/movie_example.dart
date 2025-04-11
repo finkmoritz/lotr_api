@@ -9,7 +9,8 @@ void main(List<String> args) async {
   Response<Movie> response = await lotrApi.getMovies(
     nameFilters: [Exists()],
     budgetInMillionsFilters: [GreaterThanOrEquals(100), LessThan(250)],
-    sorting: MovieSortings.byAcademyAwardWinsDesc,
+    // https://github.com/gitfrosh/lotr-api/issues/188
+    // sorting: MovieSortings.byAcademyAwardWinsDesc,
   );
   print(response);
 

@@ -2,7 +2,7 @@ name: Run tests
 
 on:
   push:
-    branches: [ master, develop ]
+    branches: [ master, develop, feature/update-2025 ]
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version-file: pubspec.yaml
+          flutter-version: 3.29.2
 
       - name: Install dependencies
         run: flutter pub get

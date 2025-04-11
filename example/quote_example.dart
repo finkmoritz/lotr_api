@@ -8,7 +8,8 @@ void main(List<String> args) async {
   var lotrApi = LotrApi(apiKey: args.first);
 
   Response<Quote> quotes = await lotrApi.getQuotes(
-    sorting: QuoteSortings.byDialogAsc,
+    // https://github.com/gitfrosh/lotr-api/issues/188
+    // sorting: QuoteSortings.byDialogAsc,
     pagination: Pagination(limit: 10, offset: 2),
     dialogFilters: [MatchesRegex('Frodo')],
   );
