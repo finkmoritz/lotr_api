@@ -1,5 +1,5 @@
 name: lotr_api
-version: 1.0.0
+version: 0.1.0
 description: API that accesses data on quotes, characters, books, etc. from the Tolkien universe.
 homepage: https://github.com/finkmoritz/lotr_api
 repository: https://github.com/finkmoritz/lotr_api
